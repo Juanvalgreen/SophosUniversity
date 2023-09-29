@@ -1,0 +1,44 @@
+Table courses {
+  course_id serial unique [PK] 
+  teacher_id integer [ref: > teachers.teacher_id]
+  course_name varchar(50)
+  amount_credits integer
+  available_places integer
+  course_student_monitor_id integer [ref: - students.student_id]
+}
+
+Table users {
+  user_id serial unique [PK]
+  user_mail varchar(50)
+  user_password varchar(50)
+  full_name varchar(50)
+}
+
+Table teachers {
+  teacher_id serial unique [PK]
+  teacher_full_name varchar(50)
+  max_degree varchar(30)
+  experience_years integer
+}
+
+Table students {
+  monitor_course_id integer [ref: - courses.course_id]
+  student_id serial unique [PK]
+  student_full_name varchar(50)
+  faculty varchar(50)
+  available_credits integer
+  enrolled_credits integer
+}
+
+Table enrollments {
+  enrollment_id serial unique [PK]
+  student_id integer [ref: > students.student_id]
+  course_id integer [ref: > courses.course_id]
+  enrollment_date date
+}
+
+Table course_prerequisites {
+  prerequisite_id key (course_id, prerequisite_course_id)
+  course_id integer [ref: > courses.course_id]
+  prerequisite_course_id integer [ref: > courses.course_id]
+}
