@@ -24,12 +24,12 @@ public class EnrollmentController {
         return service.getEnrollmentById(id);
     }
 
-    @GetMapping("/api/v1/students/{id}/enrollments")
+    @GetMapping("/api/v1/enrollments/{id}/students")
     public List<Enrollment> getEnrollmentsByStudentId(@PathVariable Long id) throws Exception{
         return service.getEnrollmentsByStudentId(id);
     }
 
-    @GetMapping("/api/v1/course/{id}/enrollments")
+    @GetMapping("/api/v1/enrollments/{id}/courses")
     public List<Enrollment> getEnrollmentByCourseId(@PathVariable Long id) throws Exception {
         return service.getEnrollmentsByCourseId(id);
     }

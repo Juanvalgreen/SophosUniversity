@@ -1,6 +1,6 @@
 package com.Sophos.SophosUniversity.repository;
 
-import com.Sophos.SophosUniversity.entities.Course;
+
 import com.Sophos.SophosUniversity.entities.HistoryApproved;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

@@ -19,7 +19,7 @@ public class PrerequisiteController {
         return service.getAllPrerequisites();
     }
 
-    @GetMapping("/api/v1/courses/{id}/prerequisites")
+    @GetMapping("/api/v1/prerequisites/{id}/courses")
     public List<Prerequisite> getPrerequisitesByCourseId(@PathVariable Long id) throws Exception {
         return service.getPrerequistesByCourseId(id);
     }

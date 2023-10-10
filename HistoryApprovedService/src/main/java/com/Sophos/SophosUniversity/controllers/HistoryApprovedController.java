@@ -18,7 +18,7 @@ public class HistoryApprovedController {
         return service.getAllApprovedCourses();
     }
 
-    @GetMapping("/api/v1/students/{id}/approvedCourses")
+    @GetMapping("/api/v1/approvedCourses/{id}/students")
     public List<HistoryApproved> getApprovedCoursesByStudentdId(@PathVariable Long id) throws Exception {
         return service.getCoursesApprovedByStudentId(id);
     }

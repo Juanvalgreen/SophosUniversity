@@ -1,7 +1,6 @@
 package com.Sophos.SophosUniversity.controllers;
 
 import com.Sophos.SophosUniversity.entities.Course;
-import com.Sophos.SophosUniversity.entities.Student;
 import com.Sophos.SophosUniversity.services.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,18 +27,18 @@ public class CourseController {
 
     }
 
-    @GetMapping("/api/v1/multipleCourses")
+    @GetMapping("/api/v1/courses/multiple")
     public List<Course> getMultipleCoursesByid(@RequestBody Iterable<Long> id) throws Exception {
         return service.getMultipleCourseById(id);
     }
 
 
-    @GetMapping("/api/v1/teachers/{teacherId}/courses")
+    @GetMapping("/api/v1/courses/{teacherId}/teachers")
     public List<Course> getCoursesByTeacherId(@PathVariable Long teacherId) throws Exception{
         return service.getCoursesByTeacherId(teacherId);
     }
 
-    @GetMapping("/api/v1/students/{monitorId}/courses")
+    @GetMapping("/api/v1/courses/{monitorId}/students")
     public List<Course> getCoursesByMonitorId(@PathVariable Long monitorId) throws Exception{
         return service.getCoursesByMonitorId(monitorId);
     }

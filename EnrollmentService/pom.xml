@@ -11,7 +11,7 @@
 	<groupId>com.Sophos</groupId>
 	<artifactId>SophosUniversity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SophosUniversity</name>
+	<name>SophosUniversity EnrollmentService</name>
 	<description>Backend For Sophos University with microservices architecture</description>
 	<properties>
 		<java.version>17</java.version>
