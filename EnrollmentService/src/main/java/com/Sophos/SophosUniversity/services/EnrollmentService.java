@@ -114,8 +114,10 @@ public class EnrollmentService implements IEnrollmentService{
                             if (hasEnoughCredits) {
                                 // Realizar la matrícula (guardar en la base de datos)
                                 repository.save(enrollment);
+                                course.setAvailable_places(course.getAvailable_places() - 1);
                                 student.setEnrolled_credits(student.getEnrolled_credits() + course.getAmount_credits());
                                 System.out.println(student);
+                                restTemplate.put("http://localhost:9002/api/v1/courses", course, Courses.class);
                                 restTemplate.put("http://localhost:9005/api/v1/students", student, Students.class);
                                 return "Matrícula Agregada Exitosamente";
                             } else {
