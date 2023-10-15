@@ -20,7 +20,7 @@ public class EnrollmentController {
        return (List<Enrollment>) service.getAllEnrollments();
     }
     @GetMapping("/api/v1/enrollments/{id}")
-    public Enrollment getEnrollmentBuId(@PathVariable Long id) throws Exception {
+    public Enrollment getEnrollmentById(@PathVariable Long id) throws Exception {
         return service.getEnrollmentById(id);
     }
 

@@ -3,11 +3,16 @@ package com.Sophos.SophosUniversity.services;
 import com.Sophos.SophosUniversity.entities.Student;
 import com.Sophos.SophosUniversity.exceptions.InternalServerErrorException;
 import com.Sophos.SophosUniversity.exceptions.StudentNotFoundException;
+import com.Sophos.SophosUniversity.models.Courses;
+import com.Sophos.SophosUniversity.models.Enrollments;
 import com.Sophos.SophosUniversity.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -16,6 +21,9 @@ public class StudentService implements IStudentService{
 
     @Autowired
     private StudentRepository repository;
+
+    @Autowired
+    RestTemplate restTemplate;
 
     @Override
     public List<Student> getAllStudents() throws Exception{
@@ -100,13 +108,33 @@ public class StudentService implements IStudentService{
     public String deleteStudent(Long id){
         if(repository.existsById(id)){
             try{
+
+
+                ResponseEntity<Enrollments[]> responseEntity= restTemplate.getForEntity("http://localhost:9000/api/v1/enrollments/"+id+"/students", Enrollments[].class);
+                List<Enrollments> enrollments = Arrays.asList(responseEntity.getBody());
+
+                for (Enrollments enroll : enrollments) {
+
+                    Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enroll.getCourse_id(), Courses.class);
+
+                    if (id.equals(course.getCourse_student_monitor_id())) {
+                        course.setCourse_student_monitor_id(null);
+                        restTemplate.put("http://localhost:9002/api/v1/courses",course,Courses.class);
+                    }
+
+
+                    restTemplate.delete("http://localhost:9000/api/v1/enrollments/"+enroll.getEnrollment_id());
+
+                }
                 repository.deleteById(id);
                 return "Estudiate eliminado exitosamente";
             } catch (DataAccessException ex) {
                 ex.printStackTrace();
                 throw new InternalServerErrorException("Error al acceder a la base de datos");
             } catch (RuntimeException ex) {
-                throw new InternalServerErrorException("Error interno del servidor");
+                throw new InternalServerErrorException(ex.getMessage());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
         }else{

@@ -30,7 +30,7 @@ public class StudentController {
         return service.getMultipleStudentsById(id);
     }
 
-    @DeleteMapping("/api/v1/students")
+    @DeleteMapping("/api/v1/students/{id}")
     public String deleteStudent(@PathVariable Long id) throws Exception{
         return service.deleteStudent(id);
     }

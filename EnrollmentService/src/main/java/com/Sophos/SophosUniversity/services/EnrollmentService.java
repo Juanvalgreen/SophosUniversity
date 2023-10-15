@@ -16,6 +16,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.System.*;
 
@@ -216,6 +217,17 @@ public class EnrollmentService implements IEnrollmentService{
     public String deleteEnrollment(Long id) throws Exception{
         if(repository.existsById(id)){
             try{
+                Enrollment enrollment = getEnrollmentById(id);
+
+                Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enrollment.getCourse_id() , Courses.class);
+                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + enrollment.getStudent_id(), Students.class);
+
+                course.setAvailable_places(course.getAvailable_places() + 1);
+                student.setEnrolled_credits(student.getEnrolled_credits() - course.getAmount_credits());
+
+
+                restTemplate.put("http://localhost:9002/api/v1/courses", course, Courses.class);
+                restTemplate.put("http://localhost:9005/api/v1/students", student, Students.class);
                 repository.deleteById(id);
                 return "Matricula eliminada correctamente";
             }catch (DataAccessException ex) {

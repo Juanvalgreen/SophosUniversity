@@ -20,6 +20,6 @@ public class Course {
     private String course_name;
     private Integer amount_credits;
     private Integer available_places;
-    private Integer course_student_monitor_id;
+    private Long course_student_monitor_id;
 
 }
