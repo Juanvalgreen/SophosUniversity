@@ -37,8 +37,42 @@ public class StudentService implements IStudentService{
             ex.printStackTrace();
             throw new InternalServerErrorException("Error interno del servidor");
         }
+    }
+
+
+    @Override
+    public List<Student> searchAllStudentsById(Long id) throws  Exception{
+
+        try{
+            return (List<Student>) repository.searchAllStudentsById(id);
+        }catch (DataAccessException ex){
+            ex.printStackTrace();
+            throw new InternalServerErrorException("Error to access the database");
+        }catch (RuntimeException ex) {
+            // Manejar otras excepciones de tiempo de ejecución
+            ex.printStackTrace();
+            throw new InternalServerErrorException("Error interno del servidor");
+        }
 
     }
+
+    @Override
+    public List<Student> searchAllStudentsByName(String name) throws  Exception{
+
+        try{
+            return (List<Student>) repository.searchAllStudentsByName(name);
+        }catch (DataAccessException ex){
+            ex.printStackTrace();
+            throw new InternalServerErrorException("Error to access the database");
+        }catch (RuntimeException ex) {
+            // Manejar otras excepciones de tiempo de ejecución
+            ex.printStackTrace();
+            throw new InternalServerErrorException("Error interno del servidor");
+        }
+
+    }
+
+
 
     @Override
     public Student getStudentById(Long id) throws Exception{

@@ -1,20 +1,22 @@
 package com.Sophos.SophosUniversity.models;
 
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Students {
+public class Enrollments {
 
-    private Long monitor_course_id;
+    private Long enrollment_id;
     private Long student_id;
-    private String student_full_name;
-    private String faculty;
-    private Integer available_credits;
-    private Integer enrolled_credits;
+    private Long course_id;
+    private Date enrollment_date;
+
+
+
 }

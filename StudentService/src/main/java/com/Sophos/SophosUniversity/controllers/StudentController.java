@@ -20,6 +20,18 @@ public class StudentController {
         return service.getAllStudents();
     }
 
+
+    @GetMapping("/api/v1/students/id/{searchId}")
+    public List<Student> searchAllStudentsById(@PathVariable Long searchId) throws Exception {
+        return service.searchAllStudentsById(searchId);
+    }
+
+    @GetMapping("/api/v1/students/name/{searchName}")
+    public List<Student> searchAllStudentsByName(@PathVariable String searchName) throws Exception {
+        return service.searchAllStudentsByName(searchName);
+    }
+
+
     @GetMapping("/api/v1/students/{id}")
     public Student getStudentById(@PathVariable Long id) throws Exception {
         return service.getStudentById(id);

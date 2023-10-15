@@ -20,6 +20,18 @@ public class CourseController {
 
     }
 
+    @GetMapping("/api/v1/courses/id/{searchId}")
+    public List<Course> searchAllCoursesById(@PathVariable Long searchId) throws Exception {
+        return service.searchAllCoursesById(searchId);
+    }
+
+
+    @GetMapping("/api/v1/courses/name/{searchName}")
+    public List<Course> searchAllCoursesByName(@PathVariable String searchName) throws Exception {
+        return service.searchAllCoursesByName(searchName);
+    }
+
+
     @GetMapping("/api/v1/courses/{id}")
     public Course getCourseById(@PathVariable Long id) throws Exception {
 

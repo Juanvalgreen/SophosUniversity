@@ -6,7 +6,12 @@ import java.util.List;
 
 public interface ICourseService {
     List<Course> getAllCourses() throws Exception;
+
+    List<Course> searchAllCoursesById(Long id) throws Exception;
+
     Course getCourseById(Long id) throws Exception;
+
+    List<Course> searchAllCoursesByName(String name) throws Exception;
 
     List<Course> getMultipleCourseById(Iterable<Long> MultipleId) throws Exception;
 

@@ -9,15 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ExceptionController {
-    @ExceptionHandler(CourseNotfoundException.class)
-    public ResponseEntity<Object> handleCourseNotFoundException(CourseNotfoundException ex) {
-        // Obtén el mensaje de error de la excepción.
-        String errorMessage = ex.getMessage();
 
-        // respuesta de error con el mensaje de error.
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
-
-    }
 
     @ExceptionHandler(TeacherNotFoundException.class)
     public ResponseEntity<Object> handleTeacherNotFoundException(TeacherNotFoundException ex) {
@@ -29,25 +21,6 @@ public class ExceptionController {
 
     }
 
-    @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<Object> handleStudentNotFoundException(StudentNotFoundException ex) {
-        // Obtén el mensaje de error de la excepción.
-        String errorMessage = ex.getMessage();
-
-        // respuesta de error con el mensaje de error.
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
-
-    }
-
-    @ExceptionHandler(EnrollmentNotFoundException.class)
-    public ResponseEntity<Object> handleEnrollmentNotFoundException(EnrollmentNotFoundException ex) {
-        // Obtén el mensaje de error de la excepción.
-        String errorMessage = ex.getMessage();
-
-        // respuesta de error con el mensaje de error.
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
-
-    }
 
     @ExceptionHandler(InternalServerErrorException.class)
     public ResponseEntity<Object> handleInternalServerError(InternalServerErrorException ex) {

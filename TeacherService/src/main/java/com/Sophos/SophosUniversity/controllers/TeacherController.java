@@ -18,6 +18,18 @@ public class TeacherController {
         return service.getAllTeachers();
     }
 
+    @GetMapping("/api/v1/teachers/name/{searchName}")
+    public List<Teacher> searchAllTeachersByName(@PathVariable String searchName) throws Exception {
+        return service.searchAllTeachersByName(searchName);
+    }
+
+    @GetMapping("/api/v1/teachers/id/{searchId}")
+    public List<Teacher> searchAllTeachersByName(@PathVariable Long searchId) throws Exception {
+        return service.searchAllTeachersById(searchId);
+    }
+
+
+
     @GetMapping("/api/v1/teachers/{id}")
     public Teacher getTeacherById(@PathVariable Long id) throws Exception{
         return service.getTeacherById(id);

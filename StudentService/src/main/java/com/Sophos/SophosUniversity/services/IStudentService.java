@@ -7,6 +7,10 @@ import java.util.List;
 public interface IStudentService {
     List<Student> getAllStudents() throws Exception;
 
+    List<Student> searchAllStudentsById(Long id) throws  Exception;
+
+    List<Student> searchAllStudentsByName(String name) throws  Exception;
+
     Student getStudentById(Long id) throws Exception;
 
     List<Student> getMultipleStudentsById(Iterable<Long> MultipleId) throws Exception;
