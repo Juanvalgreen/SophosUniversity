@@ -12,7 +12,6 @@ import { LoginRequest } from 'src/app/services/auth/LoginRequest';
 })
 export class LoginComponent {
 
-
   loginForm = this.formBuilder.group({
     user_mail: ['', [Validators.email, Validators.required]],
     user_password: ['',Validators.required]
@@ -21,11 +20,6 @@ export class LoginComponent {
   constructor(private formBuilder:FormBuilder, private router:Router, private authService:LoginService){
 
   }
-
-
-
-
-
 
   login(){
     if(this.loginForm.valid){
@@ -41,9 +35,4 @@ export class LoginComponent {
       // this.loginForm.reset();
     }
   }
-
-
-
-
-
 }

@@ -1,34 +1,7 @@
 --Poblacion datos
--- Insertar cursos
-INSERT INTO courses ("teacher_id", "course_name", "amount_credits", "available_places", "course_student_monitor_id")
-VALUES
-  (50003, 'Matemáticas', 3, 30, 30003),
-  (50000, 'Historia', 2, 25, NULL),
-  (50001, 'Física', 3, 20, 30001),
-  (50002, 'Inglés', 1, 40, 30004),
-  (50004, 'Logica', 3, 40, 30008),
-  (50006, 'Comunicación', 2, 40, NULL),
-  (50005, 'Programación', 3, 35, 30013),
-  (50003, 'Programación II', 3, 35, 30012);
 
--- Insertar estudiantes
-INSERT INTO students (monitor_course_id, student_full_name, faculty, available_credits, enrolled_credits) 
-VALUES
-  (NULL, 'Ana Pérez', 'Ciencias', 17, 0),
-  (NULL, 'María Rodríguez', 'Ciencias', 19, 0),
-  (NULL, 'Julia Vargas', 'Ciencias', 17, 0),
-  (NULL, 'Elena Sánchez', 'Ciencias', 22, 0),
-  (NULL, 'Luis Torres', 'Ciencias', 16, 0),
-  (NULL, 'Jorge Ramírez', 'Ingeniería', 15, 0),
-  (NULL, 'Sofía Morales', 'Ciencias', 16, 0),
-  (NULL, 'Diego Ruiz', 'Ciencias', 12, 0),
-  (70002, 'Carlos López', 'Ciencias', 12, 0),
-  (70000, 'Javier Martínez', 'Ingeniería', 15, 0),
-  (70003, 'Laura Fernández', 'Ingeniería', 14, 0),
-  (70004, 'Marta García', 'Ingeniería', 12, 0),
-  (70007, 'Carmen Castro', 'Ingeniería', 17, 0),
-  (70006, 'Pedro Díaz', 'Ingeniería', 19, 0),
-  (NULL, 'Camilo Echeverry', 'Ingeniería', 12, 0);
+
+
 
 -- Insertar profesores
 INSERT INTO teachers (teacher_full_name, max_degree, experience_years) 
@@ -41,7 +14,35 @@ VALUES
   ('Maribel Amu', 'Maestría', 7),
   ('Victor Hurtado', 'Doctorado', 9);
 
+-- Insertar estudiantes
+INSERT INTO students (student_full_name, faculty, available_credits, enrolled_credits, student_email, student_phone) VALUES
+('Camilo Echeverry', 'Ingeniería', 12, 1, NULL, NULL),
+('María Rodríguez', 'Ciencias', 19, 3, 'marodri@gmail.com', '3185698754'),
+('Julia Vargas', 'Ciencias', 17, 3, NULL, '3125678227'),
+('Elena Sánchez', 'Ciencias', 22, 6, 'sanchelena@hotmail.com', '3105279064'),
+('Jorge Ramírez', 'Ingeniería', 15, 6, 'Jorgeram@outlook.com', NULL),
+('Sofía Morales', 'Ciencias', 16, 3, NULL, '3196575859'),
+('Diego Ruiz', 'Ciencias', 12, 5, NULL, '3126546596'),
+('Javier Martínez', 'Ingeniería', 15, 3, 'nezvija28@gmail.com', '3007582121'),
+('Laura Fernández', 'Ingeniería', 14, 1, 'lausof12fer@hotmail.com', '3132562529'),
+('Marta García', 'Ingeniería', 12, 3, NULL, '3152455831'),
+('Carmen Castro', 'Ingeniería', 17, 6, 'carmencitafiufiu@hotmail.com', NULL),
+('Pedro Díaz', 'Ingeniería', 19, 2, 'pedrodiaz345@gmail.com', '3126544798'),
+('Luis Torres', 'Ciencias', 16, 3, 'Towerluis911@outlook.com', '3185271798'),
+('Carlos López', 'Ciencias', 12, 4, 'carpez36@outlook.com', NULL),
+('Ana Pérez', 'Ciencias', 17, 5, 'perana@gmail.com', '3125279898');
 
+-- Insertar cursos
+INSERT INTO courses ("teacher_id", "course_name", "amount_credits", "available_places", "course_student_monitor_id")
+VALUES
+  (50003, 'Matemáticas', 3, 30, 30003),
+  (50000, 'Historia', 2, 25, NULL),
+  (50001, 'Física', 3, 20, 30001),
+  (50002, 'Inglés', 1, 40, 30004),
+  (50004, 'Logica', 3, 40, 30008),
+  (50006, 'Comunicación', 2, 40, NULL),
+  (50005, 'Programación', 3, 35, 30013),
+  (50003, 'Programación II', 3, 35, 30012);
 
 
 -- Insertar inscripciones (Estudiantes en cursos)

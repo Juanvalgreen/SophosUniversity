@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router,NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,22 @@ export class AppComponent {
   title = 'Sophos University';
 
 
+  isLoginPage: Boolean;
 
 
+  constructor(private router: Router) {
+    // Verifica la ruta actual cuando se inicializa el componente
+    this.isLoginPage = false;
+  }
 
 
-
-
-
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginPage = this.router.url.includes('login');
+      }
+    });
+  }
 
 
 
