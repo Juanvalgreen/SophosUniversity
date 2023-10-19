@@ -22,12 +22,13 @@ Table teachers {
 }
 
 Table students {
-  monitor_course_id integer [ref: - courses.course_id]
   student_id serial unique [PK]
   student_full_name varchar(50)
   faculty varchar(50)
   available_credits integer
   enrolled_credits integer
+  student_email varchar(255)
+  student_phone varchar(10)
 }
 
 Table enrollments {
@@ -41,4 +42,12 @@ Table course_prerequisites {
   prerequisite_id key (course_id, prerequisite_course_id)
   course_id integer [ref: > courses.course_id]
   prerequisite_course_id integer [ref: > courses.course_id]
+}
+
+Table history_approved_courses {
+  history_courses_id serial unique [PK]
+  student_id integer [ref: > students.student_id ]
+  course_id integer [ref: > courses.course_id ]
+
+
 }

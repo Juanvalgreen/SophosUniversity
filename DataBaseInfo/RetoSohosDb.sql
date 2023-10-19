@@ -22,12 +22,13 @@ CREATE TABLE "teachers" (
 );
 
 CREATE TABLE "students" (
-  "monitor_course_id" integer,
   "student_id" serial UNIQUE PRIMARY KEY Default,
   "student_full_name" varchar(50),
   "faculty" varchar(50),
   "available_credits" integer,
-  "enrolled_credits" integer
+  "enrolled_credits" integer,
+  "student_email" varchar(255),
+  "student_phone" varchar(10)
 );
 
 CREATE TABLE "enrollments" (
@@ -52,8 +53,6 @@ CREATE TABLE "history_approved_courses" (
 ALTER TABLE "courses" ADD FOREIGN KEY ("teacher_id") REFERENCES "teachers" ("teacher_id");
 
 ALTER TABLE "courses" ADD FOREIGN KEY ("course_student_monitor_id") REFERENCES "students" ("student_id");
-
-ALTER TABLE "students" ADD FOREIGN KEY ("monitor_course_id") REFERENCES "courses" ("course_id");
 
 ALTER TABLE "enrollments" ADD FOREIGN KEY ("student_id") REFERENCES "students" ("student_id");
 

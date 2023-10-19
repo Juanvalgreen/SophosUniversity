@@ -1,0 +1,111 @@
+@use '../../_base.sass'
+
+@mixin button
+  margin: 3rem 0
+  width: 50%
+  height: 2.2rem
+  border-radius: 3rem
+  border: none
+  color: base.$text-area-color
+  font-size: 1rem
+  font-family: base.$font-stack
+
+
+main
+  margin-top:1.7rem
+  display: flex
+  overflow-y: hidden
+
+
+
+
+.illustration-side
+  width: 60%
+  height: 100%
+  display: flex
+  justify-content: center
+  position: relative
+
+  .logo
+    margin-left: 2rem
+    width: 8rem
+    height: 8rem
+    position: absolute
+    bottom: 0
+    left: 0
+
+
+  .illustration
+    z-index: -1
+    width: 57rem
+    align-self: center
+
+
+
+.form-side
+  margin-right: 1rem
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: 40%
+  border-radius: 1rem
+  background-color: base.$secondary-color
+
+  h2
+    margin-bottom: 0.2rem
+    font-family: base.$font-stack
+    font-size: 2.5rem
+    font-style: normal
+    font-weight: 200
+    line-height: normal
+    color: base.$primary-color
+
+  p
+    margin-top: 0.3rem
+    font-family: Poppins
+    font-size: 1.8rem
+    font-style: normal
+    font-weight: 600
+    line-height: normal
+    letter-spacing: 0.87px
+    color: base.$third-color
+
+
+  .login_form
+    margin-top: 2rem
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+
+    input
+      margin: 1rem 0
+      padding: 0 1.3rem
+      width: 80%
+      height: 2.2rem
+      border-radius: 3rem
+      border: solid 1px base.$primary-color
+      background-color: base.$text-area-color
+      font-size: 1rem
+      font-family: base.$font-stack
+
+    .submit-button
+      @include button
+      background-color: base.$primary-color
+      cursor: pointer
+
+      transition: all 0.5s
+      &:hover
+        width: 52%
+        font-size: 1.2rem
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px
+
+    .disabled-button
+      @include button
+      background-color: gray
+      pointer-events: none // Evita que se active el hover
+      cursor: not-allowed
+
+
