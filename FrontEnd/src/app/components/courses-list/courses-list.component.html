@@ -1,0 +1,43 @@
+<div class="main-wrapper">
+  <div class="header">
+    <h1 class="title"  *ngIf="!isCoursesPage" (click)="redirectToList()">Cursos</h1>
+    <h1 *ngIf="isCoursesPage" >Listado</h1>
+  </div>
+  <table class="table-list">
+    <tr >
+      <th>
+        Codigo
+      </th>
+      <th>
+        Nombre
+      </th>
+      <th *ngIf="isCoursesPage">
+        Profesor
+      </th>
+      <th *ngIf="isCoursesPage">
+        Monitor
+      </th>
+      <th *ngIf="isCoursesPage">
+        Nª cupos
+      </th>
+    </tr>
+    <tr *ngFor="let course of courses">
+      <td>
+        {{course.course_id}}
+      </td>
+      <td (click)="asignDetailData(course)" id="clickableName">
+        {{course.course_name}}
+      </td>
+      <td *ngIf="isCoursesPage">
+        {{course.teacher_details.teacher_full_name}}
+      </td>
+      <td *ngIf="isCoursesPage">
+        {{course.student_monitor_details.student_full_name}}
+      </td>
+      <td *ngIf="isCoursesPage">
+        {{course.available_places}}
+      </td>
+    </tr>
+  </table>
+
+</div>

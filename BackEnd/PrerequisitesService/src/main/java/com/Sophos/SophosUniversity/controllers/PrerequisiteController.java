@@ -1,5 +1,6 @@
 package com.Sophos.SophosUniversity.controllers;
 
+import com.Sophos.SophosUniversity.dtos.prerequisiteDTO;
 import com.Sophos.SophosUniversity.entities.Prerequisite;
 import com.Sophos.SophosUniversity.services.IPrerequisiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class PrerequisiteController {
     private IPrerequisiteService service;
 
     @GetMapping("/api/v1/prerequisites")
-    public List<Prerequisite> getAllPrerequisites() throws Exception {
+    public List<prerequisiteDTO> getAllPrerequisites() throws Exception {
         return service.getAllPrerequisites();
     }
 
     @GetMapping("/api/v1/prerequisites/{id}/courses")
-    public List<Prerequisite> getPrerequisitesByCourseId(@PathVariable Long id) throws Exception {
+    public List<prerequisiteDTO> getPrerequisitesByCourseId(@PathVariable Long id) throws Exception {
         return service.getPrerequistesByCourseId(id);
     }
 

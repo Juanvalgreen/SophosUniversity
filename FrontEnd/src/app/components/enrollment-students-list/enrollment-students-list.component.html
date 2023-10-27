@@ -1,0 +1,31 @@
+<div class="main-wrapper">
+  <div class="header">
+    <h1 class="title" > Estudiantes matriculados</h1>
+  </div>
+  <table class="table-list">
+    <tr >
+      <th>
+        Codigo
+      </th>
+      <th>
+        Nombre
+      </th>
+      <th>
+        Facultad
+      </th>
+    </tr>
+    <tr *ngFor="let student of enrollmentStudents">
+      <td>
+        {{student.student_id}}
+      </td>
+      <td>
+        {{student.student_details.student_full_name}}
+      </td>
+      <td >
+        {{student.student_details.faculty}}
+      </td>
+
+    </tr>
+  </table>
+
+</div>

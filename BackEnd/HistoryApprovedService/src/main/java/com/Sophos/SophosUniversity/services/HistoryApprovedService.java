@@ -1,13 +1,18 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.dtos.historyApprovedDTO;
 import com.Sophos.SophosUniversity.entities.HistoryApproved;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
 import com.Sophos.SophosUniversity.exceptions.InternalServerErrorException;
+import com.Sophos.SophosUniversity.models.Course;
+import com.Sophos.SophosUniversity.models.Students;
 import com.Sophos.SophosUniversity.repository.HistoryApprovedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,10 +22,28 @@ public class HistoryApprovedService implements IHistoryApprovedService{
     @Autowired
     private HistoryApprovedRepository repository;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     @Override
-    public List<HistoryApproved> getAllApprovedCourses() throws Exception{
+    public List<historyApprovedDTO> getAllApprovedCourses() throws Exception{
         try{
-           return (List<HistoryApproved>) repository.findAll();
+            List<historyApprovedDTO> responseHistoryApproved = new ArrayList<>();
+
+            List<HistoryApproved> historyApproveds = (List<HistoryApproved>) repository.findAll();
+
+            for (HistoryApproved historyApproved : historyApproveds){
+
+                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + historyApproved.getCourse_id(), Course.class);
+                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + historyApproved.getStudent_id(), Students.class);
+
+                responseHistoryApproved.add(new historyApprovedDTO(historyApproved,course,student));
+
+            }
+
+
+
+           return responseHistoryApproved;
         }catch (DataAccessException ex){
             ex.printStackTrace();
             throw new InternalServerErrorException("Error to access the database");
@@ -33,9 +56,24 @@ public class HistoryApprovedService implements IHistoryApprovedService{
 
 
     @Override
-    public List<HistoryApproved> getCoursesApprovedByStudentId(Long id) throws Exception{
+    public List<historyApprovedDTO> getCoursesApprovedByStudentId(Long id) throws Exception{
         try{
-            return repository.findAllCoursesApprovedByStudentId(id);
+            List<historyApprovedDTO> responseHistoryApproved = new ArrayList<>();
+
+            List<HistoryApproved> historyApproveds = repository.findAllCoursesApprovedByStudentId(id);
+
+            for (HistoryApproved historyApproved : historyApproveds){
+
+                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + historyApproved.getCourse_id(), Course.class);
+                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + historyApproved.getStudent_id(), Students.class);
+
+                responseHistoryApproved.add(new historyApprovedDTO(historyApproved,course,student));
+
+            }
+
+
+
+            return responseHistoryApproved;
         }catch (DataAccessException ex){
             ex.printStackTrace();
             throw new InternalServerErrorException("Error to access the database");

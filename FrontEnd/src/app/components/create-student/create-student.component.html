@@ -1,0 +1,35 @@
+<div class="main-wrapper">
+  <div class="header">
+    <h1>Crear nuevo</h1>
+  </div>
+  <form class="create_student_form" >
+    <div class="column-form">
+
+      <div class="input-group">
+        <label>Nombre</label>
+        <input formControlName="student_full_name" type="text" class="input_email">
+      </div>
+      <div class="input-group">
+        <label> Facultad </label>
+        <input formControlName="faculty"  type="text" class="input_password">
+      </div>
+      <div class="input-group">
+        <label>Creditos disponibles</label>
+        <input formControlName="available_credits"  type="number" class="input_email" min="0">
+      </div>
+    </div>
+    <div class="column-form">
+      <div class="input-group">
+        <label>Email</label>
+        <input formControlName="student_email"  type="email" class="input_password">
+      </div>
+      <div class="input-group">
+        <label> Teléfono</label>
+        <input formControlName="student_phone"  type="text" class="input_email">
+      </div>
+
+    </div>
+    <button type="submit" class="submit-button">Confirmar</button>
+  </form>
+
+</div>

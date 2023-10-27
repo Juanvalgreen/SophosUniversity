@@ -2,8 +2,8 @@
 
   <div class="illustration-side">
 
-    <img class="logo" src="../../../assets/Logo.svg">
-    <img class="illustration" src="../../../assets/VEctorIllustracion.svg">
+    <img class="logo" src="../../../assets/Logo.svg" alt="Sophos university logo">
+    <img class="illustration" src="../../../assets/VEctorIllustracion.svg" alt="academic Illustration">
 
   </div>
   <aside class="form-side">
@@ -12,9 +12,14 @@
     <p>Ingresa tus credenciales</p>
 
     <form class="login_form" [formGroup]="loginForm">
-      <input formControlName="user_mail" placeholder="Email" type="email" class="input_email">
-
-      <input formControlName="user_password" placeholder="Contraseña" type="password" class="input_password">
+      <div>
+        <img src="../../../assets/email 1.svg" alt="Email logo">
+        <input formControlName="user_mail" placeholder="Email" type="email" class="input_email">
+      </div>
+      <div>
+        <img src="../../../assets/bloquear 1.svg" alt="Email logo">
+        <input formControlName="user_password" placeholder="Contraseña" type="password" class="input_password">
+      </div>
 
       <button (click)="login()" [class.disabled-button]="!loginForm.valid" [class.submit-button]="loginForm.valid" type="submit" class="submit-button">Confirmar</button>
     </form>

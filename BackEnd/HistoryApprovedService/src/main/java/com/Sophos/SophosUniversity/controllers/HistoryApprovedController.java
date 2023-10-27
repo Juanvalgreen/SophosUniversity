@@ -1,5 +1,6 @@
 package com.Sophos.SophosUniversity.controllers;
 
+import com.Sophos.SophosUniversity.dtos.historyApprovedDTO;
 import com.Sophos.SophosUniversity.entities.HistoryApproved;
 import com.Sophos.SophosUniversity.services.IHistoryApprovedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class HistoryApprovedController {
     private IHistoryApprovedService service;
 
     @GetMapping("/api/v1/approvedCourses")
-    public List<HistoryApproved> getAllApporvedCourses() throws Exception {
+    public List<historyApprovedDTO> getAllApprovedCourses() throws Exception {
         return service.getAllApprovedCourses();
     }
 
     @GetMapping("/api/v1/approvedCourses/{id}/students")
-    public List<HistoryApproved> getApprovedCoursesByStudentdId(@PathVariable Long id) throws Exception {
+    public List<historyApprovedDTO> getApprovedCoursesByStudentdId(@PathVariable Long id) throws Exception {
         return service.getCoursesApprovedByStudentId(id);
     }
 

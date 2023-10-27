@@ -1,13 +1,11 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.dtos.enrollmentDTO;
 import com.Sophos.SophosUniversity.entities.Enrollment;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
 import com.Sophos.SophosUniversity.exceptions.EnrollmentNotFoundException;
 import com.Sophos.SophosUniversity.exceptions.InternalServerErrorException;
-import com.Sophos.SophosUniversity.models.ApprovedCourses;
-import com.Sophos.SophosUniversity.models.Courses;
-import com.Sophos.SophosUniversity.models.Prerequisites;
-import com.Sophos.SophosUniversity.models.Students;
+import com.Sophos.SophosUniversity.models.*;
 import com.Sophos.SophosUniversity.repository.EnrollmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -15,10 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import static java.lang.System.*;
 
 @Service
 public class EnrollmentService implements IEnrollmentService{
@@ -57,9 +53,27 @@ public class EnrollmentService implements IEnrollmentService{
     }
 
     @Override
-    public List<Enrollment> getEnrollmentsByCourseId(Long id) throws Exception{
+    public List<enrollmentDTO> getEnrollmentsByCourseId(Long id) throws Exception{
         try{
-           return (List<Enrollment>) repository.findAllEnrollementsByCourseId(id);
+            List<enrollmentDTO> responseEnrollment = new ArrayList<>();
+
+            List<Enrollment> enrollments = (List<Enrollment>) repository.findAllEnrollementsByCourseId(id);
+
+            for(Enrollment enrollment : enrollments){
+
+                Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enrollment.getCourse_id(), Courses.class);
+
+                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + enrollment.getStudent_id(), Students.class);
+
+
+                responseEnrollment.add(new enrollmentDTO(enrollment,student,course));
+
+
+            }
+
+
+
+           return responseEnrollment;
         }catch(DataAccessException ex){
             ex.printStackTrace();
             throw new InternalServerErrorException("Error to access the database");
@@ -70,9 +84,26 @@ public class EnrollmentService implements IEnrollmentService{
     }
 
     @Override
-    public List<Enrollment> getEnrollmentsByStudentId(Long id) throws Exception{
+    public List<enrollmentDTO> getEnrollmentsByStudentId(Long id) throws Exception{
         try{
-            return (List<Enrollment>) repository.findAllEnrollementsByStudentId(id);
+            List<enrollmentDTO> responseEnrollment = new ArrayList<>();
+
+            List<Enrollment> enrollments = (List<Enrollment>) repository.findAllEnrollementsByStudentId(id);
+
+            for(Enrollment enrollment : enrollments){
+
+                Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enrollment.getCourse_id(), Courses.class);
+
+                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + enrollment.getStudent_id(), Students.class);
+
+
+                responseEnrollment.add(new enrollmentDTO(enrollment,student,course));
+
+
+            }
+
+
+            return responseEnrollment;
         }catch(DataAccessException ex){
             ex.printStackTrace();
             throw new InternalServerErrorException("Error to access the database");
@@ -172,8 +203,7 @@ public class EnrollmentService implements IEnrollmentService{
             return true;
         }else{
 
-            for (Prerequisites prerequisite:
-                 prerequisites) {
+            for (Prerequisites prerequisite: prerequisites) {
                 Long prerequisiteCourseId = prerequisite.getPrerequisite_course_id();
 
                 boolean prerequisiteCompleted = approvedCourses.stream().anyMatch(course -> course.getCourse_id().equals(prerequisiteCourseId));

@@ -1,0 +1,49 @@
+<div class="main-wrapper">
+  <div class="header">
+    <h1 class="title"  *ngIf="!isStudentsPage" (click)="redirectToList()">Estudiantes</h1>
+    <h1 *ngIf="isStudentsPage">Listado</h1>
+  </div>
+  <table class="table-list">
+    <tr >
+      <th>
+        Codigo
+      </th>
+      <th>
+        Nombre
+      </th>
+      <th *ngIf="isStudentsPage">
+        Correo
+      </th>
+      <th *ngIf="isStudentsPage">
+        Teléfono
+      </th>
+      <th *ngIf="isStudentsPage">
+        Creditos matriculados
+      </th>
+      <th>
+        Facultad
+      </th>
+    </tr>
+    <tr  *ngFor="let student of allStudents">
+      <td>
+        {{student.student_id}}
+      </td>
+      <td (click)="asignDetailData(student)" id="clickableName">
+        {{student.student_full_name}}
+      </td>
+      <td *ngIf="isStudentsPage">
+        {{student.student_email != null ? student.student_email : 'null'}}
+      </td>
+      <td *ngIf="isStudentsPage">
+        {{student.student_phone != null ? student.student_phone : 'null'}}
+      </td>
+      <td *ngIf="isStudentsPage">
+        {{student.enrolled_credits}}
+      </td>
+      <td>
+        {{student.faculty}}
+      </td>
+    </tr>
+  </table>
+
+</div>

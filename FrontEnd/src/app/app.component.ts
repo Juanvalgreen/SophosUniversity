@@ -14,7 +14,6 @@ export class AppComponent {
 
 
   constructor(private router: Router) {
-    // Verifica la ruta actual cuando se inicializa el componente
     this.isLoginPage = false;
   }
 

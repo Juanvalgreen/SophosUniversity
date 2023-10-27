@@ -1,13 +1,17 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.dtos.prerequisiteDTO;
 import com.Sophos.SophosUniversity.entities.Prerequisite;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
 import com.Sophos.SophosUniversity.exceptions.InternalServerErrorException;
+import com.Sophos.SophosUniversity.models.Course;
 import com.Sophos.SophosUniversity.repository.PrerequisiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,12 +20,27 @@ public class PrerequisiteService implements IPrerequisiteService {
     @Autowired
     private PrerequisiteRepository repository;
 
+    @Autowired
+    RestTemplate restTemplate;
+
 
     @Override
-    public List<Prerequisite> getAllPrerequisites() throws Exception {
+    public List<prerequisiteDTO> getAllPrerequisites() throws Exception {
 
         try {
-            return (List<Prerequisite>) repository.findAll();
+            List<prerequisiteDTO> responsePrerequistes = new ArrayList<>();
+
+            List<Prerequisite>  prerequisites =(List<Prerequisite>) repository.findAll();
+
+            for(Prerequisite prerequisite : prerequisites){
+
+                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getCourse_id(), Course.class);
+                Course coursePrerequiste = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getPrerequisite_course_id(), Course.class);
+
+                responsePrerequistes.add(new prerequisiteDTO(prerequisite, course,coursePrerequiste));
+            }
+
+            return responsePrerequistes;
         } catch (DataAccessException ex) {
             ex.printStackTrace();
             throw new InternalServerErrorException("Error to access the database");
@@ -34,14 +53,26 @@ public class PrerequisiteService implements IPrerequisiteService {
     }
 
     @Override
-    public List<Prerequisite> getPrerequistesByCourseId(Long id) throws Exception {
+    public List<prerequisiteDTO> getPrerequistesByCourseId(Long id) throws Exception {
         try {
-            return repository.findAllPrerequisitesByCourseId(id);
+            List<prerequisiteDTO> responsePrerequistes = new ArrayList<>();
+
+            List<Prerequisite>  prerequisites =(List<Prerequisite>) repository.findAllPrerequisitesByCourseId(id);
+
+            for(Prerequisite prerequisite : prerequisites){
+
+                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getCourse_id(), Course.class);
+                Course coursePrerequiste = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getPrerequisite_course_id(), Course.class);
+
+                responsePrerequistes.add(new prerequisiteDTO(prerequisite, course,coursePrerequiste));
+            }
+
+            return responsePrerequistes;
         } catch (DataAccessException ex) {
             ex.printStackTrace();
             throw new InternalServerErrorException("Error to access the database");
         } catch (RuntimeException ex) {
-            throw new CourseNotfoundException("No hay cursos asociados a este profesor ");
+            throw new CourseNotfoundException("No hay cursos asociados a este Curso ");
         }
     }
 

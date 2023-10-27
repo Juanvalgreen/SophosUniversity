@@ -1,0 +1,41 @@
+<div class="main-wrapper">
+  <div class="header">
+    <h1>Crear nuevo</h1>
+  </div>
+  <form class="create_course_form" >
+    <div class="column-form">
+      <div class="input-group">
+        <label>Nombre</label>
+        <input formControlName="course_name" type="text" >
+      </div>
+      <div class="input-group">
+        <label>Nº creditos</label>
+        <input formControlName="amount_credits"  type="number" min="0">
+      </div>
+      <div class="input-group">
+        <label> Monitor</label>
+        <select>
+          <option value="null"> Null</option>
+          <option *ngFor="let student of allStudents" value={{student}}> {{student.student_full_name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="column-form">
+      <div class="input-group">
+        <label> Cupos libres </label>
+        <input formControlName="available_places"  type="number" >
+      </div>
+      <div class="input-group">
+        <label> Maestro</label>
+        <select>
+          <option value="null">Null</option>
+          <option *ngFor="let teacher of allTeachers" value={{teacher}}> {{teacher.teacher_full_name}}</option>
+        </select>
+      </div>
+
+    </div>
+    <button type="submit" class="submit-button">Confirmar</button>
+  </form>
+
+</div>
+

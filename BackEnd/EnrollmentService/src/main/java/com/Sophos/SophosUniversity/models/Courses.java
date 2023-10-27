@@ -12,11 +12,12 @@ import lombok.NoArgsConstructor;
 public class Courses {
 
     private Long course_id;
-    private Long teacher_id;
+    private Teachers teacher_details;
     private String course_name;
     private Integer amount_credits;
     private Integer available_places;
-    private Long course_student_monitor_id;
+    private Students student_monitor_details;
+
 
 
 }

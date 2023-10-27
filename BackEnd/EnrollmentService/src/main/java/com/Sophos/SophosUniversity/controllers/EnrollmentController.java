@@ -1,6 +1,7 @@
 package com.Sophos.SophosUniversity.controllers;
 
 
+import com.Sophos.SophosUniversity.dtos.enrollmentDTO;
 import com.Sophos.SophosUniversity.entities.Enrollment;
 import com.Sophos.SophosUniversity.services.IEnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,12 @@ public class EnrollmentController {
     }
 
     @GetMapping("/api/v1/enrollments/{id}/students")
-    public List<Enrollment> getEnrollmentsByStudentId(@PathVariable Long id) throws Exception{
+    public List<enrollmentDTO> getEnrollmentsByStudentId(@PathVariable Long id) throws Exception{
         return service.getEnrollmentsByStudentId(id);
     }
 
     @GetMapping("/api/v1/enrollments/{id}/courses")
-    public List<Enrollment> getEnrollmentByCourseId(@PathVariable Long id) throws Exception {
+    public List<enrollmentDTO> getEnrollmentByCourseId(@PathVariable Long id) throws Exception {
         return service.getEnrollmentsByCourseId(id);
     }
 

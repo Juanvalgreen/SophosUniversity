@@ -1,13 +1,19 @@
 <nav>
 
   <img src="../../../assets/Logo.svg" class="logo">
-  <div class="search-bar-container">
-    <input type="text" class="search-bar">
-
-  </div>
+  <form class="search-bar-container" *ngIf="!isHomePage">
+    <img class="search-bar-icon" src="../../../assets/lupa.svg">
+    <input type="text" class="search-bar-input" placeholder="Busca un estudiante">
+  </form>
   <div>
+
     <img src="../../../assets/LogoUser.svg" class="logo-user">
-    <img src="../../../assets/LogoMenu.svg" class="logo-menu">
+    <div class="icon nav-icon-8">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
   </div>
 
 

@@ -1,0 +1,37 @@
+<div class="main-wrapper">
+  <div class="header">
+    <h1 class="title" (click)="redirectToList()" *ngIf="!isTeachersPage">Profesores</h1>
+    <h1 *ngIf="isTeachersPage" >Listado</h1>
+  </div>
+  <table class="table-list">
+    <tr >
+      <th>
+        Codigo
+      </th>
+      <th>
+        Nombre
+      </th>
+      <th *ngIf="isTeachersPage">
+        Grado Educación
+      </th>
+      <th *ngIf="isTeachersPage">
+        Experiencia
+      </th>
+    </tr>
+    <tr *ngFor="let teacher of teachers">
+      <td>
+        {{teacher.teacher_id}}
+      </td>
+      <td (click)="asignDetailData(teacher)" id="clickableName">
+        {{teacher.teacher_full_name}}
+      </td>
+      <td *ngIf="isTeachersPage">
+        {{teacher.max_degree}}
+      </td>
+      <td *ngIf="isTeachersPage">
+        {{teacher.experience_years}} años
+      </td>
+    </tr>
+  </table>
+
+</div>
