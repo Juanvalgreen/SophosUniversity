@@ -65,3 +65,14 @@
         font-size: 1.2rem
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px
 
+    .disabled-button
+      @include base.button
+      width: 20%
+      background-color: gray
+      pointer-events: none // Evita que se active el hover
+      cursor: not-allowed
+
+  .error_message
+      color: red
+      margin: 5rem
+      font-size: 1rem

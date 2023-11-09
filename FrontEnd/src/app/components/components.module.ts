@@ -17,6 +17,8 @@ import { TeacherCoursesListComponent } from './teacher-courses-list/teacher-cour
 
 
 
+
+
 @NgModule({
   declarations: [
     StudentsListComponent,
@@ -30,6 +32,8 @@ import { TeacherCoursesListComponent } from './teacher-courses-list/teacher-cour
     EnrollmentStudentsListComponent,
     PrerequistesCoursesListComponent,
     TeacherCoursesListComponent
+
+
   ],
   imports: [
     CommonModule,
@@ -46,8 +50,7 @@ import { TeacherCoursesListComponent } from './teacher-courses-list/teacher-cour
     EnrollmentCoursesListComponent,
     EnrollmentStudentsListComponent,
     PrerequistesCoursesListComponent,
-    TeacherCoursesListComponent
-
+    TeacherCoursesListComponent,
   ]
 })
 export class ComponentsModule { }

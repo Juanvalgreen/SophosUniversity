@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class TeacherController {
 
@@ -41,7 +42,7 @@ public class TeacherController {
     }
 
     @PostMapping("/api/v1/teachers")
-    public String addNewTeacher(@RequestBody Teacher teacher){
+    public String addNewTeacher(@RequestBody Teacher teacher) throws Exception {
         return service.addNewTeacher(teacher);
     }
 

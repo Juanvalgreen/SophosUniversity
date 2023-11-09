@@ -1,6 +1,6 @@
 export interface CurrentUser {
 
-  user_mail: string
+  user_mail: string,
   token: string
 
 }

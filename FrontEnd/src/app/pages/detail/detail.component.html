@@ -15,15 +15,15 @@
           <th>Mail</th>
         </tr>
         <tr>
-          <td>{{'30000'}}</td>
-          <td>{{'juan.agredo@example.com'}}</td>
+          <td>{{currentDetailObject.currentData.student_id}}</td>
+          <td>{{currentDetailObject.currentData.student_email == null ? 'Null' : currentDetailObject.currentData.student_email}}</td>
         </tr>
         <tr>
           <th>Numero Teléfono</th>
           <th>Facultad</th>
         </tr>
         <tr>
-          <td>{{'3185271790'}}</td>
+          <td>{{currentDetailObject.currentData.student_phone == null ? 'Null' : currentDetailObject.currentData.student_phone}}</td>
           <td>{{'Ingenieria'}}</td>
         </tr>
         <tr>
@@ -31,14 +31,8 @@
           <th>Creditos matriculados</th>
         </tr>
         <tr>
-          <td>{{'21'}}</td>
-          <td>{{'6'}}</td>
-        </tr>
-        <tr>
-          <th>Monitor de</th>
-        </tr>
-        <tr>
-          <td>{{'Null'}}</td>
+          <td>{{currentDetailObject.currentData.available_credits}}</td>
+          <td>{{currentDetailObject.currentData.enrolled_credits}}</td>
         </tr>
       </table>
       <!-- when course -->
@@ -49,7 +43,7 @@
         </tr>
         <tr>
           <td>{{currentDetailObject.currentData.course_id}}</td>
-          <td>{{currentDetailObject.currentData.teacher_details.teacher_full_name}}</td>
+          <td>{{currentDetailObject.currentData.teacher_details == null ? 'Null' : currentDetailObject.currentData.teacher_details.teacher_full_name}}</td>
         </tr>
         <tr>
           <th>Creditos</th>
@@ -57,7 +51,7 @@
         </tr>
         <tr>
           <td>{{currentDetailObject.currentData.amount_credits}}</td>
-          <td>{{currentDetailObject.currentData.student_monitor_details == null ? 'null': currentDetailObject.currentData.student_monitor_details.student_full_name }}<td>
+          <td>{{currentDetailObject.currentData.student_monitor_details == null ? 'Null': currentDetailObject.currentData.student_monitor_details.student_full_name }}<td>
         </tr>
         <tr>
           <th>Cupos Disponibles</th>
@@ -65,7 +59,7 @@
         </tr>
         <tr>
           <td>{{currentDetailObject.currentData.available_places}}</td>
-          <td>{{6}}</td>
+          <td>{{amountCurrentEnrolls}}</td>
         </tr>
       </table>
       <!-- when teacher -->
@@ -75,22 +69,22 @@
           <th>Años de experiencia</th>
         </tr>
         <tr>
-          <td>{{'30000'}}</td>
-          <td>{{'3'}}</td>
+          <td>{{currentDetailObject.currentData.teacher_id}}</td>
+          <td>{{currentDetailObject.currentData.experience_years}}</td>
         </tr>
         <tr>
           <th>Máximo grado</th>
 
         </tr>
         <tr>
-          <td>{{'Doctorado'}}</td>
+          <td>{{currentDetailObject.currentData.max_degree}}</td>
 
         </tr>
 
       </table>
       <div class="operations-buttons">
-        <button>Editar</button>
-        <button>Eliminar</button>
+        <button (click)="openEditModal()">Editar</button>
+        <button id="delete-button" (click)="openDeleteModal()">Eliminar</button>
       </div>
     </div>
 

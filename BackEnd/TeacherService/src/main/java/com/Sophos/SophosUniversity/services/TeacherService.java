@@ -97,7 +97,7 @@ public class TeacherService implements ITeacherService{
     }
 
     @Override
-    public String addNewTeacher(Teacher teacher){
+    public String addNewTeacher(Teacher teacher) throws Exception{
         try{
             repository.save(teacher);
             return "Maestro creado exitosamente";
@@ -134,16 +134,19 @@ public class TeacherService implements ITeacherService{
         if(repository.existsById(id)){
             try{
 
-                ResponseEntity<Courses[]> responseEntity = restTemplate.getForEntity("http://localhost:9000/api/v1/courses/"+id+"/teachers", Courses[].class);
+                ResponseEntity<Courses[]> responseEntity = restTemplate.getForEntity("http://localhost:9002/api/v1/courses/"+id+"/teachers", Courses[].class);
                 List<Courses> courses = Arrays.asList(responseEntity.getBody());
 
-                for (Courses course : courses) {
+                if(!courses.isEmpty()){
+                    System.out.println("no ta vaciio");
+                    for (Courses course : courses) {
 
 
 
-                    course.setTeacher_id(null);
-                    restTemplate.put("http://localhost:9002/api/v1/courses",course,Courses.class);
+                        course.setTeacher_id(null);
+                        restTemplate.put("http://localhost:9002/api/v1/courses",course,Courses.class);
 
+                    }
                 }
 
                 repository.deleteById(id);
@@ -152,6 +155,7 @@ public class TeacherService implements ITeacherService{
                 ex.printStackTrace();
                 throw new InternalServerErrorException("Error al acceder a la base de datos");
             } catch (RuntimeException ex) {
+                System.out.println(ex);
                 throw new InternalServerErrorException("Error interno del servidor");
             }
         }else{

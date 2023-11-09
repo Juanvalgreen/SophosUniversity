@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { students } from 'src/app/models/students.model';
 import { teachers } from 'src/app/models/teachers.model';
+import { courseRequest } from 'src/app/services/courses/courseRequest';
+import { CoursesService } from 'src/app/services/courses/courses.service';
 import { StudentsService } from 'src/app/services/students/students.service';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
 
@@ -14,7 +18,17 @@ export class CreateCourseComponent {
   allTeachers: teachers[];
   allStudents: students[];
 
-  constructor(private teachersService: TeachersService, private studentsService: StudentsService){
+  isError: boolean = false;
+
+  createCourseForm = this.formBuilder.group({
+    course_name: ['', [Validators.required]],
+    amount_credits: [,Validators.required],
+    available_places: [,Validators.required],
+    course_student_monitor_id: [],
+    teacher_id: []
+  });
+
+  constructor(private router:Router, private teachersService: TeachersService, private studentsService: StudentsService, private courseService: CoursesService, private formBuilder:FormBuilder){
     this.allTeachers =[ ];
     this.allStudents = [ ];
   }
@@ -27,6 +41,7 @@ export class CreateCourseComponent {
       },
       error => {
         console.log(error);
+        this.isError = true;
     });
 
     this.teachersService.getAllTeachers().subscribe(
@@ -35,8 +50,32 @@ export class CreateCourseComponent {
       },
       error => {
         console.log(error);
+        this.isError = true;
     });
 
+  }
+
+  onSubmit() {
+    if (this.createCourseForm.valid) {
+      const formData = this.createCourseForm.value as unknown as courseRequest;
+
+      this.courseService.addNewCourse(formData as courseRequest).subscribe(
+        (response:any ) => {
+
+          this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/list']);
+          });
+
+        },
+        error => {
+
+          console.error(error);
+          this.isError = true;
+          this.createCourseForm.reset();
+
+        }
+      );
+    }
   }
 
 

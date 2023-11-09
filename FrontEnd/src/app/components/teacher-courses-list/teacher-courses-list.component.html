@@ -2,7 +2,9 @@
   <div class="header">
     <h1 class="title" > Cursos acargo</h1>
   </div>
-  <table class="table-list">
+  <p class="empty_courses" *ngIf="(teacherCourses.length == 0) && !isError">Este profesor no tiene cursos acargo</p>
+  <p *ngIf="isError" class="error_message">Ha ocurrido un error al traer los datos, intentelo nuevamente más tarde</p>
+  <table class="table-list"  *ngIf="!(teacherCourses.length == 0) && !isError">
     <tr >
       <th>
         Codigo

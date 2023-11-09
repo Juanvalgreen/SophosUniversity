@@ -1,9 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import { teachers } from 'src/app/models/teachers.model';
 import { DetailsDataService } from 'src/app/services/details-data/details-data.service';
 import { ListingService } from 'src/app/services/listing/listing.service';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
+import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 
 @Component({
   selector: 'app-teachers-list',
@@ -13,10 +15,18 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
 export class TeachersListComponent implements OnInit {
 
   isTeachersPage : boolean;
-  teachers : teachers[];
+  allTeachers : teachers[];
+  currentTeachersList : teachers[] = [];
 
-  constructor(private teacherService : TeachersService, private listingService:ListingService, private router:Router, private detailService: DetailsDataService){
-    this.teachers = [];
+  isError: boolean = false;
+
+  searchBar = this.formBuilder.group({
+    search: [''],
+  })
+
+
+  constructor(private teacherService : TeachersService,private formBuilder:FormBuilder, private listingService:ListingService, private router:Router, private detailService: DetailsDataService, private sessionData:SessionDataService){
+    this.allTeachers = [];
     this.isTeachersPage = false;
   }
 
@@ -29,14 +39,32 @@ export class TeachersListComponent implements OnInit {
 
     this.teacherService.getAllTeachers().subscribe(
       data => {
-        this.teachers = data
+        this.allTeachers = data;
+        this.currentTeachersList = this.allTeachers;
       },error => {
         console.log(error);
-      });
+        this.isError = true;
+    });
+
+    this.searchBar?.get('search')?.valueChanges.subscribe((searchValue) => {
+      if(searchValue == ''){
+        this.currentTeachersList = this.allTeachers;
+      }
+      // Llamar al método buscar del servicio courses con el valor de búsqueda
+      this.teacherService.searchAllTeachersByName(searchValue as string).subscribe(
+        data => {
+          this.currentTeachersList = data;
+        },error => {
+          console.log(error);
+        }
+      )
+    });
+
 
   }
 
   redirectToList(){
+    this.sessionData.storeData('currentIndicateList','Profesores');
     this.listingService.componentIndicate = 'Profesores';
     this.router.navigateByUrl('/list');
 
@@ -44,16 +72,27 @@ export class TeachersListComponent implements OnInit {
 
   asignDetailData(teacher: teachers){
 
-
-
     this.detailService.detailsData= new Object({
       currentData: teacher,
       typeData: 'Profesor'
     });
+
+
+    this.sessionData.storeData('currentDetailsData',this.detailService.detailsData);
+
     this.router.navigateByUrl('/details');
+
   }
 
-
+  sortStudents(property: string){
+    if(property == 'teacher_id'){
+      this.currentTeachersList = this.allTeachers.sort((a,b) => a[property] - b[property]);}
+    else{
+      this.currentTeachersList = this.allTeachers.sort((a, b) => {
+        return a[property as keyof teachers] < b[property as keyof teachers] ? -1 : a[property as keyof teachers] > b[property as keyof teachers] ? 1 : 0;
+      });
+    }
+  }
 
 
 }

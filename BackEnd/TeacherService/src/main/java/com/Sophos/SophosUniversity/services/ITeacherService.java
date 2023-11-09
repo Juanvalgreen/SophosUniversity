@@ -16,7 +16,7 @@ public interface ITeacherService {
 
     List<Teacher> getMultipleTeachersById(Iterable<Long> id) throws Exception;
 
-    String addNewTeacher(Teacher teacher);
+    String addNewTeacher(Teacher teacher) throws Exception;
 
     String updateTeacher(Teacher teacher) throws Exception;
 

@@ -7,7 +7,7 @@
   teacher_full_name: string
   max_degree: string
   experience_years: number -->
-  <form class="create_teacher_form" >
+  <form class="create_teacher_form" [formGroup]="createTeacherForm">
     <div class="column-form">
       <div class="input-group">
         <label>Nombre</label>
@@ -24,8 +24,10 @@
 
     </div>
 
-    <button type="submit" class="submit-button">Confirmar</button>
+    <button *ngIf="!isError" (click)="onSubmit()" [class.disabled-button]="!createTeacherForm.valid" class="submit-button">Confirmar</button>
   </form>
+
+  <p *ngIf="isError" class="error_message">Ha ocurrido un error al conectarse con el servidor, intentelo nuevamente más tarde</p>
 
 </div>
 

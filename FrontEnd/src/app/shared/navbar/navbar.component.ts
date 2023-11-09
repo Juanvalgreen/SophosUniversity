@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { ModalService } from 'src/app/services/modals/modal.service';
+import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,22 +13,38 @@ export class NavbarComponent {
 
 
   isHomePage: Boolean;
-  isListPage: Boolean;
+  isNotFoundPage: Boolean;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private modalService: ModalService, private sessionService: SessionDataService) {
     this.isHomePage = false;
-    this.isListPage = false;
+    this.isNotFoundPage = true;
   }
 
 
   ngOnInit() {
+
+    this.isNotFoundPage = this.sessionService.getData('currentUser') == null ? false : true;
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isHomePage = this.router.url.includes('home');
-        this.isListPage = this.router.url.includes('list');
       }
     });
+  }
+
+
+  toggleUserModal(){
+    this.modalService.toggleInfoUserModal();
+  }
+
+  toggleMenuModal(){
+    this.modalService.toggleMenuModal();
+  }
+
+
+  redirectToHome(){
+    this.router.navigateByUrl('/')
   }
 
 }

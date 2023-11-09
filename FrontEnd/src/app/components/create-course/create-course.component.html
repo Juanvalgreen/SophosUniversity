@@ -2,7 +2,7 @@
   <div class="header">
     <h1>Crear nuevo</h1>
   </div>
-  <form class="create_course_form" >
+  <form class="create_course_form" [formGroup]="createCourseForm" >
     <div class="column-form">
       <div class="input-group">
         <label>Nombre</label>
@@ -14,28 +14,29 @@
       </div>
       <div class="input-group">
         <label> Monitor</label>
-        <select>
+        <select formControlName="course_student_monitor_id">
           <option value="null"> Null</option>
-          <option *ngFor="let student of allStudents" value={{student}}> {{student.student_full_name}}</option>
+          <option *ngFor="let student of allStudents" value={{student.student_id}}> {{student.student_full_name}}</option>
         </select>
       </div>
     </div>
     <div class="column-form">
       <div class="input-group">
         <label> Cupos libres </label>
-        <input formControlName="available_places"  type="number" >
+        <input formControlName="available_places"  type="number" min="0">
       </div>
       <div class="input-group">
         <label> Maestro</label>
-        <select>
+        <select formControlName="teacher_id">
           <option value="null">Null</option>
-          <option *ngFor="let teacher of allTeachers" value={{teacher}}> {{teacher.teacher_full_name}}</option>
+          <option *ngFor="let teacher of allTeachers" value={{teacher.teacher_id}}> {{teacher.teacher_full_name}}</option>
         </select>
       </div>
 
     </div>
-    <button type="submit" class="submit-button">Confirmar</button>
+    <button *ngIf="!isError" (click)="onSubmit()" [class.disabled-button]="!createCourseForm.valid" class="submit-button">Confirmar</button>
   </form>
+  <p *ngIf="isError" class="error_message">Ha ocurrido un error al conectarse con el servidor, intentelo nuevamente más tarde</p>
 
 </div>
 

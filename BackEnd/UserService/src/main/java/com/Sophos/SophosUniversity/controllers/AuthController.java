@@ -6,6 +6,7 @@ import com.Sophos.SophosUniversity.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class AuthController {
 

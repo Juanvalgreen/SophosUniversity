@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Enrollment } from 'src/app/models/enrollment.model';
 import { students } from 'src/app/models/students.model';
+import { DetailsDataService } from 'src/app/services/details-data/details-data.service';
 import { EnrollmentsService } from 'src/app/services/enrollments/enrollments.service';
+import { ModalService } from 'src/app/services/modals/modal.service';
+import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 
 @Component({
   selector: 'app-enrollment-students-list',
@@ -12,7 +16,7 @@ export class EnrollmentStudentsListComponent {
 
   enrollmentStudents: Enrollment[]
 
-  constructor(private enrollemntsService :EnrollmentsService ){
+  constructor(private router: Router , private dataSession: SessionDataService, private enrollemntsService :EnrollmentsService, private detailService: DetailsDataService, private modalService: ModalService){
 
     this.enrollmentStudents = [];
 
@@ -23,14 +27,28 @@ export class EnrollmentStudentsListComponent {
   ngOnInit(){
     // student: students = null;
 
-    this.enrollemntsService.getAllEnrollmentsByCourseId(30003).subscribe(
+    this.enrollemntsService.getAllEnrollmentsByCourseId(this.detailService.detailsData.currentData.course_id).subscribe(
       data => {
+        console.log(data);
         this.enrollmentStudents = data;
+        this.detailService.updateAmountEnrolls(this.enrollmentStudents.length);
       },
       error => {
         console.log(error);
     });
   }
 
+
+
+
+  openAddNewEnrollModal(){
+    this.modalService.toggleNewEnrollModal();
+  }
+
+  openDeleteEnrollModal(enrollData: Enrollment){
+    this.modalService.toggleDeleteEnrollModal();
+
+    this.dataSession.storeData('currentDeleteEnroll', enrollData);
+  }
 
 }

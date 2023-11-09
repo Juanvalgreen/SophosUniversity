@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Courses } from 'src/app/models/courses.model';
 import { CoursesService } from 'src/app/services/courses/courses.service';
+import { DetailsDataService } from 'src/app/services/details-data/details-data.service';
 
 @Component({
   selector: 'app-teacher-courses-list',
@@ -9,9 +11,11 @@ import { CoursesService } from 'src/app/services/courses/courses.service';
 })
 export class TeacherCoursesListComponent {
 
+  isError: boolean = false;
+
   teacherCourses: Courses[]
 
-  constructor(private enrollemntsService :CoursesService ){
+  constructor(private courseService :CoursesService, private detailService: DetailsDataService, private router: Router  ){
 
     this.teacherCourses = [];
 
@@ -22,12 +26,13 @@ export class TeacherCoursesListComponent {
   ngOnInit(){
     // student: students = null;
 
-    this.enrollemntsService.getAllCoursesByTeacherId(30003).subscribe(
+    this.courseService.getAllCoursesByTeacherId(this.detailService.detailsData.currentData.teacher_id).subscribe(
       data => {
         this.teacherCourses = data;
       },
       error => {
         console.log(error);
+        this.isError = true;
     });
   }
 
