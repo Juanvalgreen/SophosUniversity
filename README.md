@@ -20,7 +20,7 @@ To deploy this project i used aws
 ## Features
 
 - Log In with credentials
-    ![LogIn] (FeaturesAppGifs/LogInSophosUni.gif)
+    ![LogIn](FeaturesAppGifs/LogInSophosUni.gif)
 - Live previews
 - Fullscreen mode
 - Cross platform
