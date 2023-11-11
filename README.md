@@ -19,18 +19,33 @@ To deploy this project i used aws
 
 ## Features
 
-- Log In with credentials
+- Log In with credentials 🔐
     ![LogIn](FeaturesAppGifs/LogInSophosUni.gif)
-- Live previews
-- Fullscreen mode
-- Cross platform
+- Sort lists by different fields 🔃
+    ![SortLists](FeaturesAppGifs/SortListsSophosUniversity.gif)
+- Search by name in all lists 🔎
+    ![SearchByName](FeaturesAppGifs/SearchByNameSophosUniversity.gif)
+- View details of a specific student, course or teacher 🙋‍♂️
+    ![Details](FeaturesAppGifs/DetailsSophosUniversity.gif)
+- Edit details of a specific student, course or teacher ✒️
+    ![Edit](FeaturesAppGifs/EditSophosUniversity.gif)
+- Create a new student, course or teacher 🆕
+    ![Create](FeaturesAppGifs/CreateNewSophosUni.gif)
+- Delete a specific student, course or teacher 🚮
+    ![Delete](FeaturesAppGifs/DeleteSophosUni.gif)
+- Enrolling a student in a course 🧑‍💻
+    ![AddNewEnroll](FeaturesAppGifs/AddNewEnrollSophosUni.gif)
+- Unenrolling a student in a course 🚮
+    ![DeleteEnroll](FeaturesAppGifs/DeleteEnrollSophosUni.gif)
+- Log out 🔒
+    ![DeleteEnroll](FeaturesAppGifs/LogOutSophosUni.gif)
 
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Client:** Angular, Sass
 
-**Server:** Node, Express
+**Server:** Java, Spring Boot, Argon
 
 
 ## Documentation
