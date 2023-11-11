@@ -121,7 +121,7 @@ public class HistoryApprovedService implements IHistoryApprovedService{
         if(repository.existsById(id)){
             try{
                 repository.deleteById(id);
-                return "Curso aprobado ha eliminado exitosamente";
+                return "Curso aprobado se ha eliminado exitosamente";
             }catch (DataAccessException ex) {
                 ex.printStackTrace();
                 throw new InternalServerErrorException("Error al acceder a la base de datos");

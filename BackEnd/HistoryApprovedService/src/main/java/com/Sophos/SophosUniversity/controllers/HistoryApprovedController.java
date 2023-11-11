@@ -37,7 +37,7 @@ public class HistoryApprovedController {
     }
 
 
-    @DeleteMapping("/api/v1/approvedCourses")
+    @DeleteMapping("/api/v1/approvedCourses/{id}")
     public String deleteApprovedCourse(@PathVariable Long id) throws Exception{
         return service.deleteApprovedCourse(id);
     }
