@@ -62,15 +62,19 @@ To deploy this project i used aws
 ## Documentation
 
 - Data Base 📚
+
 [Relational Diagram](Documentacion/SOPHOS%20RETO%20DB.pdf)
 
 - Exposed Service
+
 [Technical Documentation](https://app.swaggerhub.com/apis/GABROVAL/SophosUniversity/1)
 
 - UML diagram
-[Diagram o the system]()
 
-- UX UI prototype
+[Diagram of the system]()
+
+- UX UI prototype 🖼️
+
 [Prototype in figma](https://www.figma.com/proto/SAA7kxdVDMYjfOCyNRtazF/SophosUniversity?type=design&node-id=39-6&t=0D4KyggnT1HDK1vr-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=39%3A4)
 
 ## Installation
