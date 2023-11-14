@@ -47,7 +47,7 @@ To deploy this project i used aws
     ![DeleteEnroll](FeaturesAppGifs/DeleteEnrollSophosUni.gif)
 
 - Log out 🔒
-    ![DeleteEnroll](FeaturesAppGifs/LogOutSophosUni.gif)
+    ![LogOut](FeaturesAppGifs/LogOutSophosUni.gif)
 
 
 ## Tech Stack
@@ -63,41 +63,81 @@ To deploy this project i used aws
 
 - Data Base 📚
 
-[Relational Diagram](Documentacion/SOPHOS%20RETO%20DB.pdf)
+[Relational Diagram](Documentation/SOPHOS%20RETO%20DB.pdf)
+[Creation script](DataBaseInfo/RetoSohosDb.sql)
+[]
 
 - Exposed Service
 
 [Technical Documentation](https://app.swaggerhub.com/apis/GABROVAL/SophosUniversity/1)
 
-- UML diagram
+- UML diagrams
 
-[Diagram of the system]()
+[Architecture Diagram of the system](Documentation/Sophos%20Uni%20Arch%20Diagram.pdf)
+
+[Class Diagram](Documentation/Class%20diagram%20Sophos%20Uni.pdf)
 
 - UX UI prototype 🖼️
 
 [Prototype in figma](https://www.figma.com/proto/SAA7kxdVDMYjfOCyNRtazF/SophosUniversity?type=design&node-id=39-6&t=0D4KyggnT1HDK1vr-0&scaling=scale-down&page-id=0%3A1&starting-point-node-id=39%3A4)
 
-## Installation
 
-Install my-project with npm
-
-```bash
-  npm install my-project
-  cd my-project
-```
     
 ## Run Locally
+
+Execute script for Create and populate the data base with PostgreSql
+
+[Creation DataBase](DataBaseInfo/DbCreation.sql)
+
+[Tables Creation](DataBaseInfo/TablesCreation.sql)
+
+[Populate](DataBaseInfo/PopulationDB.sql)
 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/Juanvalgreen/SophosUniversity.git
 ```
 
-Go to the project directory
+
+Make sure you have maven
 
 ```bash
-  cd my-project
+  mvn -v
+```
+
+
+Go to the project BackEnd directory
+
+```bash
+  cd SophosUniversity/Backend
+```
+
+Go to each microservice directory and ...
+
+  Install dependencies
+
+  ```bash
+    mvn clean install
+  ```
+
+  Start the server
+
+  ```bash
+    mvn spring-boot:run
+  ```
+
+Go to FrontEnd directory
+
+```bash
+  cd SophosUniversity/FrontEnd
+```
+
+Make sure you have Node and npm
+
+```bash
+  npm -v
+  node -v
 ```
 
 Install dependencies
@@ -106,9 +146,11 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Run th ng app
 
 ```bash
-  npm run start
+  ng serve -o
 ```
+
+
 
