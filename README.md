@@ -64,8 +64,12 @@ To deploy this project i used aws
 - Data Base 📚
 
 [Relational Diagram](Documentation/SOPHOS%20RETO%20DB.pdf)
+
 [Creation script](DataBaseInfo/RetoSohosDb.sql)
-[]
+
+[Tables Creation](DataBaseInfo/TablesCreation.sql)
+
+[Populate](DataBaseInfo/PopulationDB.sql)
 
 - Exposed Service
 
@@ -126,6 +130,8 @@ Go to each microservice directory and ...
   ```bash
     mvn spring-boot:run
   ```
+
+You already have the backend runnning Then
 
 Go to FrontEnd directory
 
