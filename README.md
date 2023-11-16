@@ -12,11 +12,15 @@ Solutions such as: Generate or cancel the enrolment of a course, know how many c
 
 To deploy this project i used Render.com for deploy each microservice and Vercel.app for deploy the FrontEnd
 
-Try this Demo In Google Chrome and install this [Google Extensions](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=es&pli=1) in order to avoid errors
+Try this Demo In Google Chrome and install this [Google Extension](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=es&pli=1) in order to avoid errors
 
 
 Try It [Sophos University](https://sophosuniversity.vercel.app)
 
+Remember the only credentials allowed are 
+
+- Email: admon1@correo.sophos.edu.com
+- Password: admon123
 
 ## Features
 
