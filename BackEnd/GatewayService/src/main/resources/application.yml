@@ -19,24 +19,24 @@ spring:
   cloud:
     gateway:
       globalcors:
-        #add-to-simple-url-handler-mapping: true
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins:
-              - "*" # Add your allowed origin
-            allowedMethods:
-              - 'GET'
-              - 'POST'
-              - 'PUT'
-              - 'DELETE'
-              - 'OPTIONS'
-              - 'HEAD'
-            allowedHeaders:
-              - 'origin'
-              - 'content-type'
-              - 'accept'
-              - 'authorization'
-              - 'cookie'
+        add-to-simple-url-handler-mapping: true
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins:
+#              - "https://sophosuniversity.vercel.app/" # Add your allowed origin
+#            allowedMethods:
+#              - 'GET'
+#              - 'POST'
+#              - 'PUT'
+#              - 'DELETE'
+#              - 'OPTIONS'
+#              - 'HEAD'
+#            allowedHeaders:
+#              - 'origin'
+#              - 'content-type'
+#              - 'accept'
+#              - 'authorization'
+#              - 'cookie'
       discovery:
         locator:
           enabled: true

@@ -10,11 +10,11 @@ Solutions such as: Generate or cancel the enrolment of a course, know how many c
 
 ## Try it
 
-To deploy this project i used aws
+To deploy this project i used Render.com for deploy each microservice and Vercel.app for deploy the FrontEnd
 
-(specifications of deployment)
+Try this Demo In Google Chrome and install this [Google Extensions](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=es&pli=1) in order to avoid errors
 
-[Sophos University](link)
+[Sophos University](https://sophosuniversity.vercel.app)
 
 
 ## Features
@@ -116,8 +116,10 @@ Go to each microservice directory and ...
   Install dependencies
 
   ```bash
-    mvn clean install
+    mvn clean 
+    mvn install
   ```
+  Change the restConst Variables in order to work LOCALLY
 
   Start the server
 
