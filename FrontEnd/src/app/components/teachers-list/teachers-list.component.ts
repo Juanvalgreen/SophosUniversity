@@ -6,6 +6,7 @@ import { DetailsDataService } from 'src/app/services/details-data/details-data.s
 import { ListingService } from 'src/app/services/listing/listing.service';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-teachers-list',
@@ -13,6 +14,8 @@ import { SessionDataService } from 'src/app/services/session-data/session-data.s
   styleUrls: ['./teachers-list.component.sass']
 })
 export class TeachersListComponent implements OnInit {
+
+  loading: boolean = false;
 
   isTeachersPage : boolean;
   allTeachers : teachers[];
@@ -25,7 +28,7 @@ export class TeachersListComponent implements OnInit {
   })
 
 
-  constructor(private teacherService : TeachersService,private formBuilder:FormBuilder, private listingService:ListingService, private router:Router, private detailService: DetailsDataService, private sessionData:SessionDataService){
+  constructor(private loadingService: LoadingService, private teacherService : TeachersService,private formBuilder:FormBuilder, private listingService:ListingService, private router:Router, private detailService: DetailsDataService, private sessionData:SessionDataService){
     this.allTeachers = [];
     this.isTeachersPage = false;
   }
@@ -34,6 +37,10 @@ export class TeachersListComponent implements OnInit {
 
 
   ngOnInit() {
+
+
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
     this.isTeachersPage = this.router.url.includes('list');
 

@@ -1,5 +1,6 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.config.RestConts;
 import com.Sophos.SophosUniversity.dtos.enrollmentDTO;
 import com.Sophos.SophosUniversity.entities.Enrollment;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
@@ -61,9 +62,9 @@ public class EnrollmentService implements IEnrollmentService{
 
             for(Enrollment enrollment : enrollments){
 
-                Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enrollment.getCourse_id(), Courses.class);
+                Courses course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/" + enrollment.getCourse_id(), Courses.class);
 
-                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + enrollment.getStudent_id(), Students.class);
+                Students student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + enrollment.getStudent_id(), Students.class);
 
 
                 responseEnrollment.add(new enrollmentDTO(enrollment,student,course));
@@ -92,9 +93,9 @@ public class EnrollmentService implements IEnrollmentService{
 
             for(Enrollment enrollment : enrollments){
 
-                Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enrollment.getCourse_id(), Courses.class);
+                Courses course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/" + enrollment.getCourse_id(), Courses.class);
 
-                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + enrollment.getStudent_id(), Students.class);
+                Students student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + enrollment.getStudent_id(), Students.class);
 
 
                 responseEnrollment.add(new enrollmentDTO(enrollment,student,course));
@@ -123,21 +124,21 @@ public class EnrollmentService implements IEnrollmentService{
         try {
 
             // Obtener información del curso
-            Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + courseId, Courses.class);
+            Courses course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/" + courseId, Courses.class);
 
             if (course != null) {
                 // Verificar si hay cupos disponibles
                 if (course.getAvailable_places() > 0) {
 
                     // Obtener lista de prerequisitos para el curso
-                    List<Prerequisites> prerequisites = restTemplate.getForObject("http://localhost:9003/api/v1/prerequisites/" + courseId + "/courses", List.class);
+                    List<Prerequisites> prerequisites = restTemplate.getForObject(RestConts.BASE_URL_PREREQUISITES_DEPLOY + "/api/v1/prerequisites/" + courseId + "/courses", List.class);
 
                     // Verificar si el estudiante ha completado los prerequisitos
                     boolean hasCompletedPrerequisites = checkCompletedPrerequisites(studentId, prerequisites);
 
                     if (hasCompletedPrerequisites) {
                         // Obtener información del estudiante
-                        Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + studentId, Students.class);
+                        Students student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + studentId, Students.class);
 
                         if (student != null) {
                             // Verificar si el estudiante tiene suficientes créditos disponibles
@@ -148,8 +149,8 @@ public class EnrollmentService implements IEnrollmentService{
                                 course.setAvailable_places(course.getAvailable_places() - 1);
                                 student.setEnrolled_credits(student.getEnrolled_credits() + course.getAmount_credits());
 
-                                restTemplate.put("http://localhost:9002/api/v1/courses", course, Courses.class);
-                                restTemplate.put("http://localhost:9005/api/v1/students", student, Students.class);
+                                restTemplate.put(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses", course, Courses.class);
+                                restTemplate.put(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students", student, Students.class);
                                 repository.save(enrollment);
                                 return "Matrícula Agregada Exitosamente";
                             } else {
@@ -197,7 +198,7 @@ public class EnrollmentService implements IEnrollmentService{
     private boolean checkCompletedPrerequisites(Long studentId, List<Prerequisites> prerequisites) {
 
 
-        List<ApprovedCourses> approvedCourses = restTemplate.getForObject("http://localhost:9001/api/v1/approvedCourses/" + studentId + "/students", List.class);
+        List<ApprovedCourses> approvedCourses = restTemplate.getForObject(RestConts.BASE_URL_APPROVED_DEPLOY + "/api/v1/approvedCourses/" + studentId + "/students", List.class);
 
         if(prerequisites.isEmpty()){
             return true;
@@ -249,15 +250,15 @@ public class EnrollmentService implements IEnrollmentService{
             try{
                 Enrollment enrollment = getEnrollmentById(id);
 
-                Courses course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + enrollment.getCourse_id() , Courses.class);
-                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + enrollment.getStudent_id(), Students.class);
+                Courses course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/" + enrollment.getCourse_id() , Courses.class);
+                Students student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + enrollment.getStudent_id(), Students.class);
 
                 course.setAvailable_places(course.getAvailable_places() + 1);
                 student.setEnrolled_credits(student.getEnrolled_credits() - course.getAmount_credits());
 
 
-                restTemplate.put("http://localhost:9002/api/v1/courses", course, Courses.class);
-                restTemplate.put("http://localhost:9005/api/v1/students", student, Students.class);
+                restTemplate.put(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses", course, Courses.class);
+                restTemplate.put(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students", student, Students.class);
                 repository.deleteById(id);
                 return "Matricula eliminada correctamente";
             }catch (DataAccessException ex) {

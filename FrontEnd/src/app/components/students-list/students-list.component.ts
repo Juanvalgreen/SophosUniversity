@@ -6,6 +6,7 @@ import { DetailsDataService } from 'src/app/services/details-data/details-data.s
 import { ListingService } from 'src/app/services/listing/listing.service';
 import { StudentsService } from 'src/app/services/students/students.service';
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-students-list',
@@ -18,6 +19,8 @@ export class StudentsListComponent implements OnInit {
     search: [''],
   })
 
+  loading: boolean = false;
+
   isStudentsPage: Boolean;
 
   allStudents: students[];
@@ -25,13 +28,15 @@ export class StudentsListComponent implements OnInit {
   isError: boolean = false;
 
 
-  constructor(private formBuilder:FormBuilder, private studentsService: StudentsService, private listingService:ListingService, private router:Router, private detailService:DetailsDataService, private sessionData:SessionDataService) {
+  constructor(private loadingService: LoadingService, private formBuilder:FormBuilder, private studentsService: StudentsService, private listingService:ListingService, private router:Router, private detailService:DetailsDataService, private sessionData:SessionDataService) {
     this.allStudents = [   ];
     this.isStudentsPage = false;
   }
 
   ngOnInit() {
 
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
     this.isStudentsPage = this.router.url.includes('list');
 

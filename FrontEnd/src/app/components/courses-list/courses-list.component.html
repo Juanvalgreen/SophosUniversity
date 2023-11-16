@@ -6,9 +6,10 @@
       <img class="search-bar-icon" src="../../../assets/lupa.svg">
       <input formControlName="search" type="text" class="search-bar-input" placeholder="Busca el nombre del curso">
     </form>
+    <app-loader *ngIf="loading"></app-loader>
   </div>
   <p *ngIf="isError" class="error_message">Ha ocurrido un error al traer los datos, intentelo nuevamente más tarde</p>
-  <table class="table-list" *ngIf="!isError">
+  <table class="table-list" *ngIf="!isError && !loading">
     <tr >
       <th >
         Codigo

@@ -5,6 +5,7 @@ import { students } from 'src/app/models/students.model';
 import { teachers } from 'src/app/models/teachers.model';
 import { courseRequest } from 'src/app/services/courses/courseRequest';
 import { CoursesService } from 'src/app/services/courses/courses.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { StudentsService } from 'src/app/services/students/students.service';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
 
@@ -14,6 +15,8 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
   styleUrls: ['./create-course.component.sass']
 })
 export class CreateCourseComponent {
+
+  loading: boolean = false;
 
   allTeachers: teachers[];
   allStudents: students[];
@@ -28,12 +31,17 @@ export class CreateCourseComponent {
     teacher_id: []
   });
 
-  constructor(private router:Router, private teachersService: TeachersService, private studentsService: StudentsService, private courseService: CoursesService, private formBuilder:FormBuilder){
+  constructor(private loadingService: LoadingService, private router:Router, private teachersService: TeachersService, private studentsService: StudentsService, private courseService: CoursesService, private formBuilder:FormBuilder){
     this.allTeachers =[ ];
     this.allStudents = [ ];
   }
 
   ngOnInit() {
+
+
+
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
     this.studentsService.getAllStudents().subscribe(
       data => {

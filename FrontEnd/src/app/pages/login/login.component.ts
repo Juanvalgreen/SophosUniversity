@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/auth/login.service';
 import { LoginRequest } from 'src/app/services/auth/LoginRequest';
 
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ import { SessionDataService } from 'src/app/services/session-data/session-data.s
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent {
+
+  loading: boolean = false;
 
   isRegister: boolean = true;
   errorResponse: boolean = false;
@@ -24,17 +27,21 @@ export class LoginComponent {
     user_password: ['',Validators.required]
   });
 
-  constructor(private formBuilder:FormBuilder, private router:Router, private authService:LoginService,private sessionData:SessionDataService, private store:Store){
+  constructor(private loadingService: LoadingService,private formBuilder:FormBuilder, private router:Router, private authService:LoginService,private sessionData:SessionDataService, private store:Store){
 
+  }
+
+  ngOnInit() {
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
   }
 
 
   login(){
-    //console.log(this.loginForm.value);
+
     if(this.loginForm.valid){
 
       this.authService.login(this.loginForm.value as LoginRequest).subscribe(data => {
-        console.log(data);
+
 
 
         if(data == null || data.token == null){

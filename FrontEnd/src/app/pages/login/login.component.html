@@ -24,9 +24,9 @@
       <p *ngIf="!isRegister" class="error_message">Credenciales incorrectas</p>
       <p *ngIf="errorResponse" class="error_message">Error del servidor, Intenta acceder más tarde</p>
 
-      <button (click)="login()" [class.disabled-button]="!loginForm.valid" [class.submit-button]="loginForm.valid" type="submit" class="submit-button">Confirmar</button>
+      <button *ngIf="!loading" (click)="login()" [class.disabled-button]="!loginForm.valid" [class.submit-button]="loginForm.valid" type="submit" class="submit-button">Confirmar</button>
+      <app-loader *ngIf="loading"></app-loader>
     </form>
-
 
 
 

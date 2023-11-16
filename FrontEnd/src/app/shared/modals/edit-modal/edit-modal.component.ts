@@ -6,6 +6,7 @@ import { students } from 'src/app/models/students.model';
 import { teachers } from 'src/app/models/teachers.model';
 import { courseRequest } from 'src/app/services/courses/courseRequest';
 import { CoursesService } from 'src/app/services/courses/courses.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ModalService } from 'src/app/services/modals/modal.service';
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 import { studentRequest } from 'src/app/services/students/studentRequest';
@@ -19,6 +20,8 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
   styleUrls: ['./edit-modal.component.sass']
 })
 export class EditModalComponent {
+
+  loading: boolean = false;
 
   allTeachers: teachers[] = [];
   allStudents: students[] = [];
@@ -54,11 +57,13 @@ export class EditModalComponent {
 
   currentDetailName: string = '';
 
-  constructor(private store: Store, private modalService: ModalService, private router: Router, private sessionData: SessionDataService, private courseService: CoursesService, private studentsService:StudentsService, private teachersService: TeachersService, private formBuilder: FormBuilder){
+  constructor(private loadingService: LoadingService, private store: Store, private modalService: ModalService, private router: Router, private sessionData: SessionDataService, private courseService: CoursesService, private studentsService:StudentsService, private teachersService: TeachersService, private formBuilder: FormBuilder){
 
   }
 
   ngOnInit(){
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
     if(this.dataDetail.typeData == 'Curso'){
       this.studentsService.getAllStudents().subscribe(

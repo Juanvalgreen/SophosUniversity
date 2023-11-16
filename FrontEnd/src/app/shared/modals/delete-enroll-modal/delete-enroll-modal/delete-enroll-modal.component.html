@@ -8,8 +8,8 @@
     <div class="modal-info">
       <p>Esta acción es irreversible y eliminara por completo la matricula del Estudiante <b>{{studentName}}</b> en el curso <b>{{courseName}}</b></p>
       <p class="error_message" *ngIf="isError" >Ha ocurrido un error en el servidor, no ha sido posible realizarlo</p>
-
-      <div class="buttons-container">
+      <app-loader *ngIf="loading"></app-loader>
+      <div class="buttons-container" *ngIf="!loading">
         <button (click)="closeModal()">Cancelar</button>
         <button id="delete-button" (click)="confirmDelete()">Eliminar</button>
 

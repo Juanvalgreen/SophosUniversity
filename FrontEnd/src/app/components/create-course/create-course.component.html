@@ -34,7 +34,8 @@
       </div>
 
     </div>
-    <button *ngIf="!isError" (click)="onSubmit()" [class.disabled-button]="!createCourseForm.valid" class="submit-button">Confirmar</button>
+    <button *ngIf="!isError && !loading" (click)="onSubmit()" [class.disabled-button]="!createCourseForm.valid" class="submit-button">Confirmar</button>
+    <app-loader *ngIf="loading"></app-loader>
   </form>
   <p *ngIf="isError" class="error_message">Ha ocurrido un error al conectarse con el servidor, intentelo nuevamente más tarde</p>
 

@@ -42,43 +42,43 @@ spring:
           enabled: true
       routes:
         - id: enrollment
-          uri: ${internal.lb.uri}:9000
+          uri: https://enrollment-service-sophosuni.onrender.com
           predicates:
             - Path=/api/v1/enrollments/**
           filters:
             - AuthenticationFilter
         - id: approvedCourses
-          uri: ${internal.lb.uri}:9001
+          uri: https://historyapproved-service-sophosuni.onrender.com
           predicates:
             - Path=/api/v1/approvedCourses/**
           filters:
             - AuthenticationFilter
         - id: courses
-          uri: ${internal.lb.uri}:9002
+          uri: https://course-service-sophosuni.onrender.com
           predicates:
             - Path=/api/v1/courses/**
           filters:
             - AuthenticationFilter
         - id: prerequisites
-          uri: ${internal.lb.uri}:9003
+          uri: https://prerequisites-service-sophosuni.onrender.com
           predicates:
             - Path=/api/v1/prerequisites/**
           filters:
             - AuthenticationFilter
         - id: teachers
-          uri: ${internal.lb.uri}:9004
+          uri: https://teacher-service-sophosuni.onrender.com
           predicates:
             - Path=/api/v1/teachers/**
           filters:
             - AuthenticationFilter
         - id: students
-          uri: ${internal.lb.uri}:9005
+          uri: https://student-servicesophosuni.onrender.com
           predicates:
             - Path=/api/v1/students/**
           filters:
             - AuthenticationFilter
         - id: user
-          uri: ${internal.lb.uri}:9008
+          uri: https://user-service-try.onrender.com
           predicates:
             - Path=/api/v1/user/**
           filters:

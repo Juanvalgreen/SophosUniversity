@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { studentRequest } from 'src/app/services/students/studentRequest';
 import { StudentsService } from 'src/app/services/students/students.service';
 
@@ -12,7 +13,7 @@ import { StudentsService } from 'src/app/services/students/students.service';
 export class CreateStudentComponent implements OnInit {
 
   isError: boolean = false;
-
+  loading: boolean = false;
 
   createStudentForm = this.formBuilder.group({
     student_full_name: ['', [Validators.required]],
@@ -24,9 +25,12 @@ export class CreateStudentComponent implements OnInit {
   })
 
 
-  constructor(private router:Router, private formBuilder:FormBuilder, private studentService:StudentsService) { }
+
+
+  constructor(private loadingService: LoadingService, private router:Router, private formBuilder:FormBuilder, private studentService:StudentsService) { }
 
   ngOnInit() {
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
   }
 
   onSubmit(){

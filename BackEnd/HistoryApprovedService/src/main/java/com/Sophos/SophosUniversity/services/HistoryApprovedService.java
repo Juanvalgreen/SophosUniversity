@@ -1,5 +1,6 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.config.RestConts;
 import com.Sophos.SophosUniversity.dtos.historyApprovedDTO;
 import com.Sophos.SophosUniversity.entities.HistoryApproved;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
@@ -34,8 +35,8 @@ public class HistoryApprovedService implements IHistoryApprovedService{
 
             for (HistoryApproved historyApproved : historyApproveds){
 
-                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + historyApproved.getCourse_id(), Course.class);
-                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + historyApproved.getStudent_id(), Students.class);
+                Course course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/" + historyApproved.getCourse_id(), Course.class);
+                Students student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + historyApproved.getStudent_id(), Students.class);
 
                 responseHistoryApproved.add(new historyApprovedDTO(historyApproved,course,student));
 
@@ -64,8 +65,8 @@ public class HistoryApprovedService implements IHistoryApprovedService{
 
             for (HistoryApproved historyApproved : historyApproveds){
 
-                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/" + historyApproved.getCourse_id(), Course.class);
-                Students student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + historyApproved.getStudent_id(), Students.class);
+                Course course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/" + historyApproved.getCourse_id(), Course.class);
+                Students student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + historyApproved.getStudent_id(), Students.class);
 
                 responseHistoryApproved.add(new historyApprovedDTO(historyApproved,course,student));
 

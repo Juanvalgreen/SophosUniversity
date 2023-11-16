@@ -16,21 +16,21 @@ VALUES
 
 -- Insertar estudiantes
 INSERT INTO students (student_full_name, faculty, available_credits, enrolled_credits, student_email, student_phone) VALUES
-('Camilo Echeverry', 'Ingeniería', 12, 1, NULL, NULL),
+('Camilo Echeverry', 'Ingeniería', 12, 5, NULL, NULL),
 ('María Rodríguez', 'Ciencias', 19, 3, 'marodri@gmail.com', '3185698754'),
 ('Julia Vargas', 'Ciencias', 17, 3, NULL, '3125678227'),
-('Elena Sánchez', 'Ciencias', 22, 6, 'sanchelena@hotmail.com', '3105279064'),
-('Jorge Ramírez', 'Ingeniería', 15, 6, 'Jorgeram@outlook.com', NULL),
+('Elena Sánchez', 'Ciencias', 22, 3, 'sanchelena@hotmail.com', '3105279064'),
+('Jorge Ramírez', 'Ingeniería', 15, 1, 'Jorgeram@outlook.com', NULL),
 ('Sofía Morales', 'Ciencias', 16, 3, NULL, '3196575859'),
-('Diego Ruiz', 'Ciencias', 12, 5, NULL, '3126546596'),
+('Diego Ruiz', 'Ciencias', 12, 6, NULL, '3126546596'),
 ('Javier Martínez', 'Ingeniería', 15, 3, 'nezvija28@gmail.com', '3007582121'),
-('Laura Fernández', 'Ingeniería', 14, 1, 'lausof12fer@hotmail.com', '3132562529'),
-('Marta García', 'Ingeniería', 12, 3, NULL, '3152455831'),
-('Carmen Castro', 'Ingeniería', 17, 6, 'carmencitafiufiu@hotmail.com', NULL),
-('Pedro Díaz', 'Ingeniería', 19, 2, 'pedrodiaz345@gmail.com', '3126544798'),
-('Luis Torres', 'Ciencias', 16, 3, 'Towerluis911@outlook.com', '3185271798'),
-('Carlos López', 'Ciencias', 12, 4, 'carpez36@outlook.com', NULL),
-('Ana Pérez', 'Ciencias', 17, 5, 'perana@gmail.com', '3125279898');
+('Laura Fernández', 'Ingeniería', 14, 3, 'lausof12fer@hotmail.com', '3132562529'),
+('Marta García', 'Ingeniería', 12, 6, NULL, '3152455831'),
+('Carmen Castro', 'Ingeniería', 17, 3, 'carmencitafiufiu@hotmail.com', NULL),
+('Pedro Díaz', 'Ingeniería', 19, 5, 'pedrodiaz345@gmail.com', '3126544798'),
+('Luis Torres', 'Ciencias', 16, 6, 'Towerluis911@outlook.com', '3185271798'),
+('Carlos López', 'Ciencias', 12, 2, 'carpez36@outlook.com', NULL),
+('Ana Pérez', 'Ciencias', 17, 1, 'perana@gmail.com', '3125279898');
 
 -- Insertar cursos
 INSERT INTO courses ("teacher_id", "course_name", "amount_credits", "available_places", "course_student_monitor_id")

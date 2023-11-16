@@ -1,5 +1,6 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.config.RestConts;
 import com.Sophos.SophosUniversity.dtos.courseDTO;
 import com.Sophos.SophosUniversity.entities.Course;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
@@ -29,6 +30,8 @@ public class CourseService implements ICourseService{
     @Autowired
     RestTemplate restTemplate;
 
+
+
     @Override
     public List<courseDTO> getAllCourses() throws Exception{
         try{
@@ -42,11 +45,11 @@ public class CourseService implements ICourseService{
                 Students student= null;
 
                 if(course.getTeacher_id() != null){
-                    teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                    teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
                 }
 
                 if(course.getCourse_student_monitor_id() != null){
-                    student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                    student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
                 }
 
                 responseCourse.add(new courseDTO(course,teacher,student));
@@ -80,11 +83,11 @@ public class CourseService implements ICourseService{
                 Students student= null;
 
                 if(course.getTeacher_id() != null){
-                    teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                    teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
                 }
 
                 if(course.getCourse_student_monitor_id() != null){
-                    student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                    student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
                 }
 
                 responseCourse.add(new courseDTO(course,teacher,student));
@@ -118,11 +121,11 @@ public class CourseService implements ICourseService{
                 Students student= null;
 
                 if(course.getTeacher_id() != null){
-                    teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                    teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
                 }
 
                 if(course.getCourse_student_monitor_id() != null){
-                    student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                    student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
                 }
 
                 responseCourse.add(new courseDTO(course,teacher,student));
@@ -152,11 +155,11 @@ public class CourseService implements ICourseService{
             Students student= null;
 
             if(course.getTeacher_id() != null){
-                teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
             }
 
             if(course.getCourse_student_monitor_id() != null){
-                student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
             }
 
             return new courseDTO(course,teacher,student);
@@ -186,11 +189,11 @@ public class CourseService implements ICourseService{
                 Students student= null;
 
                 if(course.getTeacher_id() != null){
-                    teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                    teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
                 }
 
                 if(course.getCourse_student_monitor_id() != null){
-                    student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                    student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
                 }
 
                 responseCourse.add(new courseDTO(course,teacher,student));
@@ -221,11 +224,11 @@ public class CourseService implements ICourseService{
                 Students student= null;
 
                 if(course.getTeacher_id() != null){
-                    teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                    teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
                 }
 
                 if(course.getCourse_student_monitor_id() != null){
-                    student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                    student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
                 }
 
                 responseCourse.add(new courseDTO(course,teacher,student));
@@ -255,11 +258,11 @@ public class CourseService implements ICourseService{
                 Students student= null;
 
                 if(course.getTeacher_id() != null){
-                    teacher = restTemplate.getForObject("http://localhost:9004/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
+                    teacher = restTemplate.getForObject(RestConts.BASE_URL_TEACHERS_DEPLOY + "/api/v1/teachers/" + course.getTeacher_id(), Teachers.class);
                 }
 
                 if(course.getCourse_student_monitor_id() != null){
-                    student = restTemplate.getForObject("http://localhost:9005/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
+                    student = restTemplate.getForObject(RestConts.BASE_URL_STUDENTS_DEPLOY + "/api/v1/students/" + course.getCourse_student_monitor_id(), Students.class);
                 }
 
                 responseCourse.add(new courseDTO(course,teacher,student));
@@ -281,13 +284,13 @@ public class CourseService implements ICourseService{
         if (repository.existsById(id)) {
             try {
 
-                ResponseEntity<Enrollments[]> responseEntity= restTemplate.getForEntity("http://localhost:9000/api/v1/enrollments/"+id+"/courses", Enrollments[].class);
+                ResponseEntity<Enrollments[]> responseEntity= restTemplate.getForEntity(RestConts.BASE_URL_ENROLLMENTS_DEPLOY +  "/api/v1/enrollments/"+id+"/courses", Enrollments[].class);
                 List<Enrollments> enrollments = Arrays.asList(responseEntity.getBody());
 
 
                 for (Enrollments enroll : enrollments) {
 
-                    restTemplate.delete("http://localhost:9000/api/v1/enrollments/"+enroll.getEnrollment_id());
+                    restTemplate.delete(RestConts.BASE_URL_ENROLLMENTS_DEPLOY +  "/api/v1/enrollments/"+enroll.getEnrollment_id());
 
                 }
 

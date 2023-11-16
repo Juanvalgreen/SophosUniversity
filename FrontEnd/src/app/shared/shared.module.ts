@@ -8,6 +8,7 @@ import { DeleteModalComponent } from './modals/delete-modal/delete-modal.compone
 import { EditModalComponent } from './modals/edit-modal/edit-modal.component';
 import { AddEnrollModalComponent } from './modals/add-enroll-modal/add-enroll-modal.component';
 import { DeleteEnrollModalComponent } from './modals/delete-enroll-modal/delete-enroll-modal/delete-enroll-modal.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -19,7 +20,8 @@ import { DeleteEnrollModalComponent } from './modals/delete-enroll-modal/delete-
     DeleteModalComponent,
     EditModalComponent,
     AddEnrollModalComponent,
-    DeleteEnrollModalComponent
+    DeleteEnrollModalComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { DeleteEnrollModalComponent } from './modals/delete-enroll-modal/delete-
     DeleteModalComponent,
     EditModalComponent,
     AddEnrollModalComponent,
-    DeleteEnrollModalComponent
+    DeleteEnrollModalComponent,
+    LoaderComponent
 
   ]
 })

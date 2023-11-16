@@ -9,9 +9,9 @@ CREATE TABLE "courses" (
 
 CREATE TABLE "users" (
   "user_id" serial UNIQUE PRIMARY KEY ,
-  "user_mail" varchar(50),
-  "user_password" varchar(50),
-  "full_name" varchar(50)
+  "user_mail" varchar(200),
+  "user_password" varchar(500),
+  "full_name" varchar(200)
 );
 
 CREATE TABLE "teachers" (

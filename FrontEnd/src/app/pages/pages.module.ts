@@ -9,6 +9,8 @@ import { ListncreateComponent } from '../pages/listncreate/listncreate.component
 import { ComponentsModule } from '../components/components.module';
 import { DetailComponent } from './detail/detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -24,7 +26,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    SharedModule
   ],
   exports: [
     LoginComponent,

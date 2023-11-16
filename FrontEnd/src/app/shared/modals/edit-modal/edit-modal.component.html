@@ -101,7 +101,8 @@
 
         </div>
       </form>
-      <div class="buttons-container">
+      <app-loader *ngIf="loading"></app-loader>
+      <div class="buttons-container" *ngIf="!loading">
         <button (click)="closeModal()">Cancelar</button>
         <button id="delete-button" (click)="confirmEdit()">Editar</button>
 

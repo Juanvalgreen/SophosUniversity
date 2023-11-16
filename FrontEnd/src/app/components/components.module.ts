@@ -14,6 +14,7 @@ import { EnrollmentCoursesListComponent } from './enrollment-courses-list/enroll
 import { EnrollmentStudentsListComponent } from './enrollment-students-list/enrollment-students-list.component';
 import { PrerequistesCoursesListComponent } from './prerequistes-courses-list/prerequistes-courses-list.component';
 import { TeacherCoursesListComponent } from './teacher-courses-list/teacher-courses-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -37,6 +38,7 @@ import { TeacherCoursesListComponent } from './teacher-courses-list/teacher-cour
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
   ],
   exports: [

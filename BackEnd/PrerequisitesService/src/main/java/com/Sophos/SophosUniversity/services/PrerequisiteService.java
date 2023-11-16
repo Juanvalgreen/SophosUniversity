@@ -1,5 +1,6 @@
 package com.Sophos.SophosUniversity.services;
 
+import com.Sophos.SophosUniversity.config.RestConts;
 import com.Sophos.SophosUniversity.dtos.prerequisiteDTO;
 import com.Sophos.SophosUniversity.entities.Prerequisite;
 import com.Sophos.SophosUniversity.exceptions.CourseNotfoundException;
@@ -34,8 +35,8 @@ public class PrerequisiteService implements IPrerequisiteService {
 
             for(Prerequisite prerequisite : prerequisites){
 
-                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getCourse_id(), Course.class);
-                Course coursePrerequiste = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getPrerequisite_course_id(), Course.class);
+                Course course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/"+ prerequisite.getCourse_id(), Course.class);
+                Course coursePrerequiste = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/"+ prerequisite.getPrerequisite_course_id(), Course.class);
 
                 responsePrerequistes.add(new prerequisiteDTO(prerequisite, course,coursePrerequiste));
             }
@@ -61,8 +62,8 @@ public class PrerequisiteService implements IPrerequisiteService {
 
             for(Prerequisite prerequisite : prerequisites){
 
-                Course course = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getCourse_id(), Course.class);
-                Course coursePrerequiste = restTemplate.getForObject("http://localhost:9002/api/v1/courses/"+ prerequisite.getPrerequisite_course_id(), Course.class);
+                Course course = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/"+ prerequisite.getCourse_id(), Course.class);
+                Course coursePrerequiste = restTemplate.getForObject(RestConts.BASE_URL_COURSES_DEPLOY + "/api/v1/courses/"+ prerequisite.getPrerequisite_course_id(), Course.class);
 
                 responsePrerequistes.add(new prerequisiteDTO(prerequisite, course,coursePrerequiste));
             }

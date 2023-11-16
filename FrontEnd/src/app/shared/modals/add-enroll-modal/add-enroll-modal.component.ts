@@ -7,6 +7,7 @@ import { students } from 'src/app/models/students.model';
 import { CoursesService } from 'src/app/services/courses/courses.service';
 import { enrollmentRequest } from 'src/app/services/enrollments/enrollmentRequest';
 import { EnrollmentsService } from 'src/app/services/enrollments/enrollments.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ModalService } from 'src/app/services/modals/modal.service';
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 import { StudentsService } from 'src/app/services/students/students.service';
@@ -18,6 +19,8 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
   styleUrls: ['./add-enroll-modal.component.sass']
 })
 export class AddEnrollModalComponent {
+
+  loading: boolean = false;
 
   allCourses : Courses[] = [];
   allStudents : students[] = [];
@@ -32,12 +35,16 @@ export class AddEnrollModalComponent {
     student_id: [this.dataDetail.currentData.student_id  == null ? null : this.dataDetail.currentData.student_id, Validators.required]
   });
 
-  constructor(private store: Store, private modalService: ModalService, private router: Router, private sessionData: SessionDataService, private courseService: CoursesService, private studentsService:StudentsService, private enrollService: EnrollmentsService, private formBuilder: FormBuilder){
+  constructor(private loadingService: LoadingService, private store: Store, private modalService: ModalService, private router: Router, private sessionData: SessionDataService, private courseService: CoursesService, private studentsService:StudentsService, private enrollService: EnrollmentsService, private formBuilder: FormBuilder){
 
   }
 
 
   ngOnInit(){
+
+
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
     this.studentsService.getAllStudents().subscribe(
       data => {

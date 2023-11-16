@@ -89,13 +89,7 @@ To deploy this project i used aws
     
 ## Run Locally
 
-Execute script for Create and populate the data base with PostgreSql
-
-[Creation DataBase](DataBaseInfo/DbCreation.sql)
-
-[Tables Creation](DataBaseInfo/TablesCreation.sql)
-
-[Populate](DataBaseInfo/PopulationDB.sql)
+The database is in cloud so you only need:
 
 Clone the project
 

@@ -28,7 +28,9 @@
       </form>
       <p class="error_message" *ngIf="!isAvailable" >Aseguresé de que el estudiante cumpla con los requerimientos para matricular esta materia</p>
 
-      <div class="buttons-container">
+      <app-loader *ngIf="loading"></app-loader>
+
+      <div class="buttons-container" *ngIf="!loading">
         <button (click)="closeModal()">Cancelar</button>
         <button id="delete-button" (click)="addNewEnroll()">Generar</button>
 

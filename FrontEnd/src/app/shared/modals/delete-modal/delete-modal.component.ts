@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CoursesService } from 'src/app/services/courses/courses.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ModalService } from 'src/app/services/modals/modal.service';
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 import { StudentsService } from 'src/app/services/students/students.service';
@@ -14,15 +15,20 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
 })
 export class DeleteModalComponent {
 
+  loading: boolean = false;
+
   isAvailable: boolean = true;
   dataDetail: any = this.sessionData.getData('currentDetailsData');
   currentDetailName: string = '';
 
-  constructor(private store: Store, private modalService: ModalService, private router: Router, private sessionData: SessionDataService, private courseService: CoursesService, private studentService:StudentsService, private teacherService: TeachersService){
+  constructor(private loadingService: LoadingService, private store: Store, private modalService: ModalService, private router: Router, private sessionData: SessionDataService, private courseService: CoursesService, private studentService:StudentsService, private teacherService: TeachersService){
 
   }
 
   ngOnInit(){
+
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
     console.log(this.dataDetail);
     switch(this.dataDetail.typeData){

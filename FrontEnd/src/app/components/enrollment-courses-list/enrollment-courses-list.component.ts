@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { current } from 'immer';
 import { Courses } from 'src/app/models/courses.model';
 import { Enrollment } from 'src/app/models/enrollment.model';
 import { DetailsDataService } from 'src/app/services/details-data/details-data.service';
 import { EnrollmentsService } from 'src/app/services/enrollments/enrollments.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ModalService } from 'src/app/services/modals/modal.service';
 import { SessionDataService } from 'src/app/services/session-data/session-data.service';
 
@@ -15,12 +15,16 @@ import { SessionDataService } from 'src/app/services/session-data/session-data.s
 })
 export class EnrollmentCoursesListComponent {
 
+  loading: boolean = false;
+
+
+
   isError: boolean = false;
 
 
   enrollmentCourses: Enrollment[]
 
-  constructor(private router: Router, private dataSession: SessionDataService, private enrollemntsService :EnrollmentsService, private detailService: DetailsDataService, private modalService: ModalService){
+  constructor(private loadingService: LoadingService, private router: Router, private dataSession: SessionDataService, private enrollemntsService :EnrollmentsService, private detailService: DetailsDataService, private modalService: ModalService){
 
     this.enrollmentCourses = [];
 
@@ -31,7 +35,7 @@ export class EnrollmentCoursesListComponent {
 
   ngOnInit(){
     // student: students = null;
-
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
 
 
     this.enrollemntsService.getAllEnrollmentsByStudentId(this.detailService.detailsData.currentData.student_id).subscribe(

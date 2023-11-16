@@ -3,11 +3,12 @@
     <h1 class="title" > Cursos matriculados</h1>
     <img src="../../../assets/plus.svg" alt="add new enroll icon" (click)="openAddNewEnrollModal()">
   </div>
-  <p class="empty_courses" *ngIf="(enrollmentCourses.length == 0) && !isError">Este estudiante aún no tiene cursos matriculados</p>
+  <p class="empty_courses" *ngIf="(enrollmentCourses.length == 0) && !isError && !loading">Este estudiante aún no tiene cursos matriculados</p>
 
+  <app-loader *ngIf="loading"></app-loader>
   <p *ngIf="isError" class="error_message">Ha ocurrido un error al traer los datos, intentelo nuevamente más tarde</p>
 
-  <table class="table-list" *ngIf="!(enrollmentCourses.length == 0) && !isError">
+  <table class="table-list" *ngIf="!(enrollmentCourses.length == 0) && !isError && !loading">
     <tr >
       <th>
         Codigo

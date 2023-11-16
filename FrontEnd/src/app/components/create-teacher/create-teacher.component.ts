@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 import { teacherRequest } from 'src/app/services/teachers/teacherRequest';
 import { TeachersService } from 'src/app/services/teachers/teachers.service';
 
@@ -10,7 +11,7 @@ import { TeachersService } from 'src/app/services/teachers/teachers.service';
   styleUrls: ['./create-teacher.component.sass']
 })
 export class CreateTeacherComponent {
-
+  loading: boolean = false;
   isError: boolean = false;
 
   createTeacherForm = this.formBuilder.group({
@@ -19,8 +20,14 @@ export class CreateTeacherComponent {
     experience_years: [,Validators.required]
   });
 
-  constructor(private teacherService: TeachersService, private formBuilder:FormBuilder, private router: Router){
+  constructor(private loadingService: LoadingService, private teacherService: TeachersService, private formBuilder:FormBuilder, private router: Router){
 
+  }
+
+  ngOnInit(){
+
+
+    this.loadingService.loading$.subscribe(loading => this.loading = loading);
   }
 
   onSubmit(){

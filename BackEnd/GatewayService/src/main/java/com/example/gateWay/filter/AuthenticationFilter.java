@@ -66,7 +66,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     // Realizar la solicitud con los encabezados personalizados
                     ResponseEntity<Boolean> response = restTemplate.exchange(
 
-                            "http://localhost:9008/api/v1/user/validate",
+                            "https://user-service-try.onrender.com/api/v1/user/validate",
                             HttpMethod.GET,
                             httpEntity,
                             boolean.class
