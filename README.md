@@ -124,7 +124,7 @@ Go to each microservice directory and ...
     mvn clean 
     mvn install
   ```
-  Change the restConst Variables in order to work LOCALLY
+*Change the restConst Variables in order to work LOCALLY*
 
   Start the server
 
@@ -132,7 +132,7 @@ Go to each microservice directory and ...
     mvn spring-boot:run
   ```
 
-You already have the backend runnning Then
+*You already have the backend runnning Then*
 
 Go to FrontEnd directory
 
@@ -152,8 +152,9 @@ Install dependencies
 ```bash
   npm install
 ```
+*Change the url_base in "env" folder in order to work LOCALLY*
 
-Run th ng app
+Run the app
 
 ```bash
   ng serve -o
