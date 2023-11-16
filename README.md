@@ -14,6 +14,10 @@ To deploy this project i used Render.com for deploy each microservice and Vercel
 
 Try this Demo In Google Chrome and install this [Google Extension](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=es&pli=1) in order to avoid errors
 
+![CORSExtensions](FeaturesAppGifs/CorsExtension.gif)
+
+
+#### Now you are ready
 
 Try It [Sophos University](https://sophosuniversity.vercel.app)
 
